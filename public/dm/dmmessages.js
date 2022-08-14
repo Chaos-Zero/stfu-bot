@@ -526,7 +526,7 @@ function JargonMessage() {
       "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FJargont.png?v=1609715231119"
     )
     .setDescription(
-      "Here are some acronyms  jargon used regularly in the server.\n\n"
+      "Here are some acronyms jargon used regularly in the server.\n\n"
     )
     .addFields(
       {
