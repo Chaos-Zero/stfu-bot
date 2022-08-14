@@ -592,8 +592,8 @@ function JargonMessage() {
       }
     )
     .setFooter({
-      text: "danimyuu ♡".toString(),
-      iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850".toString()}
+      text: String("danimyuu ♡"),
+      iconURL: String("https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850")}
     );
   return Embed;
 }

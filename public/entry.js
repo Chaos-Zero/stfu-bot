@@ -111,7 +111,8 @@ async function CheckForCommand(message, channel, bot) {
     firstWord == "$pisnir" ||
     firstWord == "$pin" ||
     firstWord == "$pinisir" ||
-    firstWord == "$pinser"
+    firstWord == "$pinser" ||
+    firstWord == "$t"
   ) {
     if (
       firstWord == "$pisnir" ||
@@ -170,7 +171,7 @@ async function CheckForCommand(message, channel, bot) {
         //GetGenshinCharacter(message, String(argument[2]));
         break;
       case "jargon":
-        message.author.send(String(JargonMessage()));
+        message.author.send(JargonMessage());
         DeletePinsirCommand(message);
         break;
       case "commands":
