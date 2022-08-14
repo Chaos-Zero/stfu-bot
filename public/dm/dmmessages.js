@@ -521,7 +521,7 @@ function SendCommandMessages(message) {
 function JargonMessage() {
   const Embed = new Discord.EmbedBuilder()
     .setTitle("Danimyuu Jargon Guide")
-    .setColor(0xff00ff)
+    .setColor("0xff00ff")
     .setThumbnail(
       "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FJargont.png?v=1609715231119"
     )
