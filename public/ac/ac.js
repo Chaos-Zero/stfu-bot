@@ -1,6 +1,6 @@
 // This is used to get anime and manga details
 const { get } = require("request-promise");
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 // Utility functions
 function jsonConcat(o1, o2) {
@@ -237,7 +237,7 @@ function CreateVillagerEmbed(villagerCount, villagers) {
     }
   }
 
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     .setTitle(villager["name"]["name-USen"])
     .setColor("GREEN")
     .setThumbnail(villager["image_uri"])
@@ -262,7 +262,7 @@ function CreateVillagerEmbed(villagerCount, villagers) {
       inline: true
     })
     //.setImage(body.data[0].attributes.coverImage.large)
-    .setFooter('"' + villager["catch-phrase"] + '"', villager["icon_uri"]);
+    .setFooter({ text: '"' + villager["catch-phrase"] + '"', iconURL: villager["icon_uri"]});
   //try it
 
   return embed;
@@ -351,13 +351,13 @@ async function CreateItemEmbed(
         " of " +
         numbeOfItems
       : "Item available from AC Ver." + item[itemCount]["version"];
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     .setTitle(title)
     .setColor(0xdaa520)
     .setThumbnail(item[itemCount]["image_uri"])
-    .setFooter(
-      footerText,
-      "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FGyroid.png?v=1614961148871"
+    .setFooter({
+      text: footerText,
+      iconURL:"https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FGyroid.png?v=1614961148871" }
     );
 
   if (item[itemCount]["buy-price"]) {
@@ -516,11 +516,10 @@ function CycleVillager(message, villagers) {
 
       const leftFilter = reaction => reaction.emoji.name === "⬅️";
       const rightFilter = reaction => reaction.emoji.name === "➡️";
-      const collector = m.createReactionCollector(
+      var fiter = (reaction, user) => ["⬅️", "➡️"].includes(reaction.emoji.name);
+      const collector = m.createReactionCollector({
         // only collect left and right arrow reactions from the message author
-        (reaction, user) => ["⬅️", "➡️"].includes(reaction.emoji.name),
-        {
-          time: 5 * 60 * 1000
+        fiter, time: 5 * 60 * 1000
         }
       ); // 5 min
 
@@ -572,7 +571,7 @@ function GetVillager(message, villagers) {
       "I'm sorry, but I don't recognise this Villager."
     );
   }
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     .setTitle(villager["name"]["name-USen"])
     .setColor("GREEN")
     .setThumbnail(villager["image_uri"])
@@ -597,7 +596,7 @@ function GetVillager(message, villagers) {
       inline: true
     })
     //.setImage(body.data[0].attributes.coverImage.large)
-    .setFooter('"' + villager["catch-phrase"] + '"', villager["icon_uri"]);
+    .setFooter({ text: '"' + villager["catch-phrase"] + '"', iconURL:villager["icon_uri"]});
   //try it
   message.channel.send(embed);
   //message.delete();
@@ -628,7 +627,7 @@ function GetBug(message, bugs) {
   var title = bugName.replace(/(^\w{1})|(\s+\w{1})/g, letter =>
     letter.toUpperCase()
   );
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     .setTitle(title)
     .setColor(0x964b00)
     .setThumbnail(bug["image_uri"])
@@ -653,7 +652,7 @@ function GetBug(message, bugs) {
       inline: false
     })
     //.setImage(body.data[0].attributes.coverImage.large)
-    .setFooter('"' + bug["catch-phrase"] + '"', bug["icon_uri"]);
+    .setFooter({ text: '"' + bug["catch-phrase"] + '"', iconURL: bug["icon_uri"]});
 
   if (bug["availability"]["isAllDay"] == true) {
     embed.addFields({
@@ -716,10 +715,10 @@ function GetFish(message, fishes) {
   var title = fishName.replace(/(^\w{1})|(\s+\w{1})/g, letter =>
     letter.toUpperCase()
   );
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     .setTitle(title)
     .setThumbnail(fish["image_uri"])
-    .setFooter('"' + fish["catch-phrase"] + '"', fish["icon_uri"]);
+    .setFooter({ text: '"' + fish["catch-phrase"] + '"', iconURL: fish["icon_uri"]});
 
   if (fish["speed"]) {
     embed.addFields({
@@ -830,7 +829,7 @@ function GetFossil(message, fossils) {
   var title = fossilName.replace(/(^\w{1})|(\s+\w{1})/g, letter =>
     letter.toUpperCase()
   );
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     .setTitle(title)
     .setColor(0x964b00)
     .setThumbnail(fossil["image_uri"])
@@ -876,7 +875,7 @@ function GetArt(message, arts) {
   var title = artName.replace(/(^\w{1})|(\s+\w{1})/g, letter =>
     letter.toUpperCase()
   );
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     .setTitle(title)
     .setColor(0xdaa520)
     .setThumbnail(art["image_uri"])
@@ -937,11 +936,11 @@ async function GetItem(message, items, hangables) {
 
         const leftFilter = reaction => reaction.emoji.name === "⬅️";
         const rightFilter = reaction => reaction.emoji.name === "➡️";
+        var filter = (reaction, user) => ["⬅️", "➡️"].includes(reaction.emoji.name);
         const collector = m.createReactionCollector(
           // only collect left and right arrow reactions from the message author
-          (reaction, user) => ["⬅️", "➡️"].includes(reaction.emoji.name),
           {
-            time: 5 * 60 * 1000
+            filter,time: 5 * 60 * 1000
           }
         ); // 5 min
 

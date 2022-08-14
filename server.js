@@ -75,11 +75,11 @@ bot.on("messageUpdate", (oldMessage, newMessage) => {
 });
 
 // Deal with DMs
-bot.on("message", function(msg) {
+bot.on("messageCreate", function(msg) {
   if (msg.content.toLowerCase() == "templates") {
     SendTemplateMessage(msg);
   } else if (msg.content.toLowerCase() == "jargon") {
-    msg.reply(JargonMessage());
+    msg.reply({content: JargonMessage(), allowedMentions: { repliedUser: false } });
   } else if (msg.content.toLowerCase() == "commands") {
     SendCommandMessages(msg);
   } else if (msg.content.toLowerCase() == "add") {

@@ -28,18 +28,23 @@ function CreateDmMessage(isHelp) {
 
   // Start of abstraction for DM message.
   const embedMessage = CreateDmEmbedMessage(
-    isHelp,
     title,
     colour,
     thumbNail,
     description
   );
+  if (isHelp) {
+    message.author.send({ embeds: [embedMessage], files: ['https://cdn.glitch.com/6024cd69-aae2-43ec-9145-8a104c1b66bb%2Fpin.png?v=1593501335275'] });
+  }
+  else {
+    message.author.send(embedMessage);
+  }
   return embedMessage;
 }
 
 // Create DM embeded message
-function CreateDmEmbedMessage(isHelp, title, colour, thumbNail, description) {
-  var Embed = new Discord.MessageEmbed()
+function CreateDmEmbedMessage(title, colour, thumbNail, description) {
+  var Embed = new Discord.EmbedBuilder()
     .setTitle(title)
     .setColor(colour)
     .setThumbnail(thumbNail)
@@ -62,23 +67,17 @@ function CreateDmEmbedMessage(isHelp, title, colour, thumbNail, description) {
         inline: true
       }
     )
-    .setFooter(
-      "danimyuu ♡",
-      "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"
+    .setFooter({
+      text: "danimyuu ♡",
+      iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"}
     );
-  if (!isHelp) {
-    Embed.attachFiles([
-      "https://cdn.glitch.com/6024cd69-aae2-43ec-9145-8a104c1b66bb%2Fpin.png?v=1593501335275"
-    ]);
-  }
-
   return Embed;
 }
 
 // Send Bot commands in DM
 function SendCommandMessages(message) {
   //message.author.send(
-  //  new Discord.MessageEmbed()
+  //  new Discord.EmbedBuilder()
   //    .setTitle("Rosalina")
   //    .setColor(0x191970)
   //    .setThumbnail(
@@ -125,7 +124,7 @@ function SendCommandMessages(message) {
   //);
 
   //message.author.send(
-  //  new Discord.MessageEmbed()
+  //  new Discord.EmbedBuilder()
   //    .setTitle("Alcremie-B")
   //    .setColor(0xe6e6fa)
   //    .setThumbnail(
@@ -197,7 +196,7 @@ function SendCommandMessages(message) {
   //);
 
   //message.author.send(
-  //  new Discord.MessageEmbed()
+  //  new Discord.EmbedBuilder()
   //    .setTitle("Gengar-Bot")
   //    .setColor(0x4b0082)
   //    .setThumbnail(
@@ -219,7 +218,7 @@ function SendCommandMessages(message) {
   //);
 
   message.author.send(
-    new Discord.MessageEmbed()
+    new Discord.EmbedBuilder()
       .setTitle("PINsir-bot")
       .setColor(0xe69500)
       .setThumbnail(
@@ -232,7 +231,7 @@ function SendCommandMessages(message) {
   );
 
   message.author.send(
-    new Discord.MessageEmbed()
+    new Discord.EmbedBuilder()
       .setTitle("Base Commands")
       .setColor(0x005ce6)
       .setThumbnail(
@@ -264,7 +263,7 @@ function SendCommandMessages(message) {
   );
   
     message.author.send(
-    new Discord.MessageEmbed()
+    new Discord.EmbedBuilder()
       .setTitle("Gaming Commands")
       .setColor(0xcc3300)
       .setThumbnail(
@@ -302,7 +301,7 @@ function SendCommandMessages(message) {
   );
 
   message.author.send(
-    new Discord.MessageEmbed()
+    new Discord.EmbedBuilder()
       .setTitle("Pokémon Commands")
       .setColor(0xffd700)
       .setThumbnail(
@@ -482,7 +481,7 @@ function SendCommandMessages(message) {
   );
 
   message.author.send(
-    new Discord.MessageEmbed()
+    new Discord.EmbedBuilder()
       .setTitle("Dank Commands")
       .setColor(0x00e673)
       .setThumbnail(
@@ -511,16 +510,16 @@ function SendCommandMessages(message) {
           inline: false
         }
       )
-      .setFooter(
-        "danimyuu ♡",
-        "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"
+      .setFooter({
+        text: "danimyuu ♡",
+        iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"}
       )
   );
 }
 
 // Return Jargon DM. Needs refactor.
 function JargonMessage() {
-  const Embed = new Discord.MessageEmbed()
+  const Embed = new Discord.EmbedBuilder()
     .setTitle("Danimyuu Jargon Guide")
     .setColor(0xff00ff)
     .setThumbnail(
@@ -592,9 +591,9 @@ function JargonMessage() {
         inline: false
       }
     )
-    .setFooter(
-      "danimyuu ♡",
-      "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"
+    .setFooter({
+      text: "danimyuu ♡",
+      iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"}
     );
   return Embed;
 }
@@ -675,7 +674,7 @@ function SendTemplateMessage(message) {
 }
 
 function CreateHostingTemplates(title, colour, thumbnail, template, type) {
-  var embed = new Discord.MessageEmbed()
+  var embed = new Discord.EmbedBuilder()
     .setTitle(title)
     .setColor(colour)
     .setThumbnail(thumbnail)
@@ -685,9 +684,9 @@ function CreateHostingTemplates(title, colour, thumbnail, template, type) {
         " message.\n"
     )
     .setDescription(template)
-    .setFooter(
-      "danimyuu ♡",
-      "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"
+    .setFooter({
+      text: "danimyuu ♡",
+      iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"}
     );
   return embed;
 }

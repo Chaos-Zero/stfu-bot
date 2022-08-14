@@ -92,9 +92,9 @@ function HostingUpMessage(db, message) {
       /\d/.test(raidCode) && message.content.includes("rc:")
         ? raidCode
         : "No code needed!";
-    var embed = new Discord.MessageEmbed()
+    var embed = new Discord.EmbedBuilder()
       .setColor(0xffd700)
-      .setAuthor(username + " is hosting!", message.author.displayAvatarURL())
+      .setAuthor({ name: username + " is hosting!", iconURL:message.author.displayAvatarURL()})
       //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
       .addFields({
         name:
@@ -173,15 +173,15 @@ function rehost(db, message) {
 }
 
 function CreateBasicHostMessage(username) {
-  var embed = new Discord.MessageEmbed()
+  var embed = new Discord.EmbedBuilder()
     .setColor(0xffd700)
-    .setAuthor(username + " is hosting!")
+    .setAuthor({name: username + " is hosting!"})
     .setImage(
       "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2Fclassic_pinsirbot.png?v=1597703026332"
     )
-    .setFooter(
-      "Image by silver#7472",
-      "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2Fsilver.png?v=1597704076569"
+    .setFooter({
+      text: "Image by silver#7472",
+      iconURL: "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2Fsilver.png?v=1597704076569"}
     );
   return embed;
 }

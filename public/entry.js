@@ -77,6 +77,7 @@ function CreateBot() {
   //]);
   const bot = new Discord.Client({
     intents: intents,
+    partials: [Partials.Channel]
   });
   bot.setMaxListeners(0);
 
@@ -85,8 +86,9 @@ function CreateBot() {
   bot.login(`${botKey}`).catch(console.error);
   bot.on("ready", async () => {
     //Set bot card information
-    bot.user.setActivity('Dani\'s homies! Type "$pinsir help" for more info.', {
-      type: "LISTENING",
+    bot.user.setPresence({ activities: [{name: 'Dani\'s homies! Type "$pinsir help" for more info.', 
+      type: "LISTENING"
+      }] 
     });
     console.log("This bot is active!");
 
@@ -181,7 +183,7 @@ async function CheckForCommand(message, channel, bot) {
         DeletePinsirCommand(message);
         break;
       case "help":
-        message.author.send(CreateDmMessage(true));
+        CreateDmMessage(message, true);
         DeletePinsirCommand(message);
         break;
       case "berry":
@@ -368,7 +370,7 @@ function CheckForBlacklist(message, channel) {
         message.author.id +
         ">!";
       channel.send(pinsirMessage);
-      message.author.send(CreateDmMessage(false));
+      CreateDmMessage(message, false);
       stringFound = true;
     }
   }

@@ -43,8 +43,8 @@ function PokemonNumberMessage(message, bot) {
           "> has guessed the easter egg!";
         bot.users.cache.get("268487608680579072").send(pinsirMessage);
 
-        var embed = new Discord.MessageEmbed()
-          .setAuthor("Who's that P̸̡̨̢̡̧̛̛̣̼͈͍̟͉̳̖͖̱͎̲͔̱̻̦̙̺̞̩̬̫̫̭̥̤͓̖̤̞͓̦͙̱̻̼̖̗͈̣̩̪͐̓̈́̓͋̔̔̄̌̀͗͋͒̌̍̉͋͛̌̊̐͛̈́̽͆̆̽̂̽͐̾͂̂̈́̃̐̾̐͝͝ͅơ̵̢̨̧̨̯̝̘̩̲͚̤̭̩͇̰͕̹̫̟̭͖̤̲̙͇̞̊́͐̂ķ̵̢̡̢͉͕͖̲̜̖̦̭̻̹̯͔̬̟͇̮̞͕͖͇̪̙̰͙̠͚̖̲̗̮̟͔̻̬̥͚̙̘̽̃̉͊̽̒̅̈́͑̓̾͒̌͋̅̈͌͆͆̊̐͌̓̃͊̉̀̀̃̏͗̌̈̊̇͘͘̕̕͜͜͜͝͠ͅę̴̛̣͚̲̭̯̣͖͓̟̠̩͕̘͈̱͇̹͉̹̯́̌̋̓͌̋̽̃̂̎̅̇̀́̇̏̚̚̕͜͝ͅͅm̷̢̢̨̛̭̺͕̣͈̘̮̖̪̜͍̤̟̲̥̪̰̤̣̰̰͉̳̼̅̏͒͛̽̄̋̈́͋̑̇̌̇̓̏̿̎͗̀̌͂̂̏̀̏̍̊̈́͊͂̅̈̅ͅò̶̧̨̨͕̺̝͎̯̜̤̯̜̹̞͇̤͕͉̪̣̭͍͔̦̝̼̺̱̊̓̓̈́̈̌̐́̐͂̄͐̾͌̅̈́̉͒͂̇̀̽͋̏̾̿͋̊̑͒͌̚͘̚͘̚͜͝͝n̶̲̹̗̼͉̣͈͖̭̬͈͓̰̩̼̠̞͙̤͕̠̗͈̹͍̤̺̰͓̺̣̈̚ͅͅͅ?")
+        var embed = new Discord.EmbedBuilder()
+          .setAuthor({name: "Who's that P̸̡̨̢̡̧̛̛̣̼͈͍̟͉̳̖͖̱͎̲͔̱̻̦̙̺̞̩̬̫̫̭̥̤͓̖̤̞͓̦͙̱̻̼̖̗͈̣̩̪͐̓̈́̓͋̔̔̄̌̀͗͋͒̌̍̉͋͛̌̊̐͛̈́̽͆̆̽̂̽͐̾͂̂̈́̃̐̾̐͝͝ͅơ̵̢̨̧̨̯̝̘̩̲͚̤̭̩͇̰͕̹̫̟̭͖̤̲̙͇̞̊́͐̂ķ̵̢̡̢͉͕͖̲̜̖̦̭̻̹̯͔̬̟͇̮̞͕͖͇̪̙̰͙̠͚̖̲̗̮̟͔̻̬̥͚̙̘̽̃̉͊̽̒̅̈́͑̓̾͒̌͋̅̈͌͆͆̊̐͌̓̃͊̉̀̀̃̏͗̌̈̊̇͘͘̕̕͜͜͜͝͠ͅę̴̛̣͚̲̭̯̣͖͓̟̠̩͕̘͈̱͇̹͉̹̯́̌̋̓͌̋̽̃̂̎̅̇̀́̇̏̚̚̕͜͝ͅͅm̷̢̢̨̛̭̺͕̣͈̘̮̖̪̜͍̤̟̲̥̪̰̤̣̰̰͉̳̼̅̏͒͛̽̄̋̈́͋̑̇̌̇̓̏̿̎͗̀̌͂̂̏̀̏̍̊̈́͊͂̅̈̅ͅò̶̧̨̨͕̺̝͎̯̜̤̯̜̹̞͇̤͕͉̪̣̭͍͔̦̝̼̺̱̊̓̓̈́̈̌̐́̐͂̄͐̾͌̅̈́̉͒͂̇̀̽͋̏̾̿͋̊̑͒͌̚͘̚͘̚͜͝͝n̶̲̹̗̼͉̣͈͖̭̬͈͓̰̩̼̠̞͙̤͕̠̗͈̹͍̤̺̰͓̺̣̈̚ͅͅͅ?"})
           .setColor(0xff0000)
           //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
           .addFields({
@@ -78,8 +78,8 @@ function PokemonNumberMessage(message, bot) {
       pokeIndex = "0" + pokeIndex;
     }
     if (isNaN(pokemon)) {
-      var embed = new Discord.MessageEmbed()
-        .setAuthor("Which number is that Pokémon?")
+      var embed = new Discord.EmbedBuilder()
+        .setAuthor({name: "Which number is that Pokémon?"})
         .setColor(0xff0000)
         //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
         .addFields({
@@ -106,8 +106,8 @@ function PokemonNumberMessage(message, bot) {
       var pokeImage =
         "https://www.serebii.net/" + pokemonAddress + "" + pokeIndex + ".png";
 
-      var embed = new Discord.MessageEmbed()
-        .setAuthor("Who's that Pokémon?")
+      var embed = new Discord.EmbedBuilder()
+        .setAuthor({name: "Who's that Pokémon?"})
         .setColor(0xff0000)
         //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
         .addFields({
@@ -166,8 +166,8 @@ function BalltismMessage(message, bot) {
           "> has guessed the easter egg!";
         bot.users.cache.get("268487608680579072").send(pinsirMessage);
 
-        var embed = new Discord.MessageEmbed()
-          .setAuthor("Who's that P̸̡̨̢̡̧̛̛̣̼͈͍̟͉̳̖͖̱͎̲͔̱̻̦̙̺̞̩̬̫̫̭̥̤͓̖̤̞͓̦͙̱̻̼̖̗͈̣̩̪͐̓̈́̓͋̔̔̄̌̀͗͋͒̌̍̉͋͛̌̊̐͛̈́̽͆̆̽̂̽͐̾͂̂̈́̃̐̾̐͝͝ͅơ̵̢̨̧̨̯̝̘̩̲͚̤̭̩͇̰͕̹̫̟̭͖̤̲̙͇̞̊́͐̂ķ̵̢̡̢͉͕͖̲̜̖̦̭̻̹̯͔̬̟͇̮̞͕͖͇̪̙̰͙̠͚̖̲̗̮̟͔̻̬̥͚̙̘̽̃̉͊̽̒̅̈́͑̓̾͒̌͋̅̈͌͆͆̊̐͌̓̃͊̉̀̀̃̏͗̌̈̊̇͘͘̕̕͜͜͜͝͠ͅę̴̛̣͚̲̭̯̣͖͓̟̠̩͕̘͈̱͇̹͉̹̯́̌̋̓͌̋̽̃̂̎̅̇̀́̇̏̚̚̕͜͝ͅͅm̷̢̢̨̛̭̺͕̣͈̘̮̖̪̜͍̤̟̲̥̪̰̤̣̰̰͉̳̼̅̏͒͛̽̄̋̈́͋̑̇̌̇̓̏̿̎͗̀̌͂̂̏̀̏̍̊̈́͊͂̅̈̅ͅò̶̧̨̨͕̺̝͎̯̜̤̯̜̹̞͇̤͕͉̪̣̭͍͔̦̝̼̺̱̊̓̓̈́̈̌̐́̐͂̄͐̾͌̅̈́̉͒͂̇̀̽͋̏̾̿͋̊̑͒͌̚͘̚͘̚͜͝͝n̶̲̹̗̼͉̣͈͖̭̬͈͓̰̩̼̠̞͙̤͕̠̗͈̹͍̤̺̰͓̺̣̈̚ͅͅͅ?")
+        var embed = new Discord.EmbedBuilder()
+          .setAuthor({name: "Who's that P̸̡̨̢̡̧̛̛̣̼͈͍̟͉̳̖͖̱͎̲͔̱̻̦̙̺̞̩̬̫̫̭̥̤͓̖̤̞͓̦͙̱̻̼̖̗͈̣̩̪͐̓̈́̓͋̔̔̄̌̀͗͋͒̌̍̉͋͛̌̊̐͛̈́̽͆̆̽̂̽͐̾͂̂̈́̃̐̾̐͝͝ͅơ̵̢̨̧̨̯̝̘̩̲͚̤̭̩͇̰͕̹̫̟̭͖̤̲̙͇̞̊́͐̂ķ̵̢̡̢͉͕͖̲̜̖̦̭̻̹̯͔̬̟͇̮̞͕͖͇̪̙̰͙̠͚̖̲̗̮̟͔̻̬̥͚̙̘̽̃̉͊̽̒̅̈́͑̓̾͒̌͋̅̈͌͆͆̊̐͌̓̃͊̉̀̀̃̏͗̌̈̊̇͘͘̕̕͜͜͜͝͠ͅę̴̛̣͚̲̭̯̣͖͓̟̠̩͕̘͈̱͇̹͉̹̯́̌̋̓͌̋̽̃̂̎̅̇̀́̇̏̚̚̕͜͝ͅͅm̷̢̢̨̛̭̺͕̣͈̘̮̖̪̜͍̤̟̲̥̪̰̤̣̰̰͉̳̼̅̏͒͛̽̄̋̈́͋̑̇̌̇̓̏̿̎͗̀̌͂̂̏̀̏̍̊̈́͊͂̅̈̅ͅò̶̧̨̨͕̺̝͎̯̜̤̯̜̹̞͇̤͕͉̪̣̭͍͔̦̝̼̺̱̊̓̓̈́̈̌̐́̐͂̄͐̾͌̅̈́̉͒͂̇̀̽͋̏̾̿͋̊̑͒͌̚͘̚͘̚͜͝͝n̶̲̹̗̼͉̣͈͖̭̬͈͓̰̩̼̠̞͙̤͕̠̗͈̹͍̤̺̰͓̺̣̈̚ͅͅͅ?"})
           .setColor(0xff0000)
           //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
           .addFields({
@@ -231,7 +231,7 @@ function BalltismEmbed(
   } else if (imgIndex > 9 && imgIndex < 100) {
     imgIndex = "0" + imgIndex;
   }
-  var embed = new Discord.MessageEmbed();
+  var embed = new Discord.EmbedBuilder();
   var imgIndex = pokeIndex;
   var ballImg = GetBallImage(pokemonEntry.Ball1);
   console.log(ballImg.img);
@@ -275,11 +275,11 @@ function threeBallEmbed(pokeGif, pokeIndex, pokemonEntry, ballImg, region) {
       CreateRegionalGifAddress(pokeGif, region) +
       ".gif"
   );
-  var embed = new Discord.MessageEmbed()
-    .setAuthor(
-      "Balltism Suggestion",
-      "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2FBalltism%20icon.png?v=1605530606838"
-    )
+  var embed = new Discord.EmbedBuilder()
+    .setAuthor({
+      name: "Balltism Suggestion",
+      iconURL:"https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2FBalltism%20icon.png?v=1605530606838"
+})
     .setColor(0xffff00)
     //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
     .setImage(
@@ -317,10 +317,10 @@ function threeBallEmbed(pokeGif, pokeIndex, pokemonEntry, ballImg, region) {
 }
 
 function twoBallEmbed(pokeGif, pokeIndex, pokemonEntry, ballImg, region) {
-  var embed = new Discord.MessageEmbed()
-    .setAuthor(
-      "Balltism Suggestion",
-      "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2FBalltism%20icon.png?v=1605530606838"
+  var embed = new Discord.EmbedBuilder()
+    .setAuthor({
+      name: "Balltism Suggestion",
+      iconURL:"https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2FBalltism%20icon.png?v=1605530606838" }
     )
     .setColor(0xffff00)
     //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
@@ -352,10 +352,10 @@ function twoBallEmbed(pokeGif, pokeIndex, pokemonEntry, ballImg, region) {
 }
 
 function singleBallEmbed(pokeGif, pokeIndex, pokemonEntry, ballImg, region) {
-  var embed = new Discord.MessageEmbed()
-    .setAuthor(
-      "Balltism Suggestion",
-      "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2FBalltism%20icon.png?v=1605530606838"
+  var embed = new Discord.EmbedBuilder()
+    .setAuthor({
+      name: "Balltism Suggestion",
+      iconURL:"https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2FBalltism%20icon.png?v=1605530606838"}
     )
     .setColor(0xffff00)
     //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
@@ -387,8 +387,8 @@ function addFooterBalltism(pokemonEntry, embed, region) {
     regionText += " ";
   }
   if (pokemonEntry.AltEvolution) {
-    embed.setFooter(
-      "For shiny " +
+    embed.setFooter({
+      text :"For shiny " +
         regionText +
         pokemonEntry.FullEvolution +
         ", we suggest a " +
@@ -400,38 +400,38 @@ function addFooterBalltism(pokemonEntry, embed, region) {
         pokemonEntry.AltEvoBall +
         " ball",
       //GetBallImage(pokemonEntry.EvoBall).img
-      "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2FBalltism%20icon%20multi.png?v=1605573712202"
+      iconURL: "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2FBalltism%20icon%20multi.png?v=1605573712202" }
     );
   } else if (pokemonEntry.FullEvolution) {
-    embed.setFooter(
-      "For shiny " +
+    embed.setFooter({
+      text: "For shiny " +
         regionText +
         pokemonEntry.FullEvolution +
         ", we suggest a " +
         pokemonEntry.EvoBall +
         " ball",
       //GetBallImage(pokemonEntry.EvoBall).img
-      "https://raw.githubusercontent.com/caquillo07/rotom-b-data/master/sprites/pokemon/shiny/" +
+      iconURL: "https://raw.githubusercontent.com/caquillo07/rotom-b-data/master/sprites/pokemon/shiny/" +
         CreateRegionalGifAddress(
           pokemonEntry.FullEvolution.toLowerCase(),
           region
         ) +
-        ".gif"
+        ".gif" }
     );
   } else if (pokemonEntry.Gmax && region != "Gigantamax") {
-    embed.setFooter(
-      "For shiny Gigantamax " +
+    embed.setFooter({
+      text: "For shiny Gigantamax " +
         pokemonEntry.Gmax +
         ", we suggest a " +
         pokemonEntry.GmaxBall +
         " ball",
       //GetBallImage(pokemonEntry.EvoBall).img
-      "https://raw.githubusercontent.com/caquillo07/rotom-b-data/master/sprites/pokemon/shiny/" +
+      iconURL: "https://raw.githubusercontent.com/caquillo07/rotom-b-data/master/sprites/pokemon/shiny/" +
         CreateRegionalGifAddress(
           pokemonEntry.Gmax.toLowerCase(),
           "Gigantamax"
         ) +
-        ".gif"
+        ".gif" }
     );
   }
 }

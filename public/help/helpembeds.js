@@ -23,7 +23,7 @@ function TerrainMessage(message) {
 }
 
 function ElectricTerrainMessage() {
-  const Embed = new Discord.MessageEmbed()
+  const Embed = new Discord.EmbedBuilder()
     .setTitle("<:Electric:778732680870625281> Electric Terrain")
     .setColor(0xffff00)
     //.setImage(
@@ -48,7 +48,7 @@ function ElectricTerrainMessage() {
 }
 
 function GrassyTerrainMessage() {
-  const Embed = new Discord.MessageEmbed()
+  const Embed = new Discord.EmbedBuilder()
     .setTitle("<:Grassy:778732681294643242> Grassy Terrain")
     .setColor(0x98ff98)
     //.setImage(
@@ -73,7 +73,7 @@ function GrassyTerrainMessage() {
 }
 
 function MistyTerrainMessage() {
-  const Embed = new Discord.MessageEmbed()
+  const Embed = new Discord.EmbedBuilder()
     .setTitle("<:NoDragon:778732681201713176> Misty Terrain")
     .setColor(0xb3d5e0)
     //.setImage(
@@ -100,7 +100,7 @@ function MistyTerrainMessage() {
 }
 
 function PsychicTerrainMessage() {
-  const Embed = new Discord.MessageEmbed()
+  const Embed = new Discord.EmbedBuilder()
     .setTitle("<:Psychic:778732680883208203> Psychic Terrain")
     .setColor(0xff1493)
     //.setThumbnail(

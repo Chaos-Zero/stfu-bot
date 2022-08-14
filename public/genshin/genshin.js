@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 //const genshin = require("genshin-impact-api");
 
 function CreateGenshinEmbed(character) {
-  return new Discord.MessageEmbed()
+  return new Discord.EmbedBuilder()
     .setTitle("Genshin Impact Bio: " + character.name)
     .setColor(0x00ace6)
     .setThumbnail(character.image)
@@ -50,9 +50,9 @@ function CreateGenshinEmbed(character) {
         inline: true
       }
     )
-    .setFooter(
-      "danimyuu ♡",
-      "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"
+    .setFooter({
+      text: "danimyuu ♡",
+      iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"}
     );
 }
 
