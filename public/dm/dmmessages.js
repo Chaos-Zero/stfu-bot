@@ -2,7 +2,7 @@ const { Client, RichEmbed } = require("discord.js");
 const Discord = require("discord.js");
 
 // Create intial DM message - needs to be refactored
-function CreateDmMessage(isHelp) {
+function CreateDmMessage(message, isHelp) {
   var title, file, image, thumbNail, colour, description;
 
   const help =
