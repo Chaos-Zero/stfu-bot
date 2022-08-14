@@ -528,7 +528,7 @@ function JargonMessage() {
     .setDescription(
       "Here are some acronyms  jargon used regularly in the server.\n\n"
     )
-    .addFields([
+    .addFields(
       {
         name: "IGN",
         value: "In Game Name.",
@@ -590,11 +590,10 @@ function JargonMessage() {
           "Abuse at your own peril.",
         inline: false
       }
-    ]
     )
-    .setFooter({
-      text: "danimyuu ♡",
-      iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"}
+    .setFooter(
+      "danimyuu ♡",
+      "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"
     );
   return Embed;
 }
