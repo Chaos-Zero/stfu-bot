@@ -519,7 +519,7 @@ function SendCommandMessages(message) {
 
 // Return Jargon DM. Needs refactor.
 function JargonMessage() {
-  const Embed = new Discord.MessageEmbed()
+  const Embed = new Discord.EmbedBuilder()
     .setTitle("Danimyuu Jargon Guide")
     .setColor(0xff00ff)
     .setThumbnail(
