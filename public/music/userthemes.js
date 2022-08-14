@@ -142,7 +142,7 @@ async function SendSound(db, message) {
   message.delete();
   var discordUser = GetUserFromId(message, user.userId);
 
-  var embed = new Discord.EmbedBuilder()
+  var embed = new Discord.MessageEmbed()
     .setTitle("Playing " + user.username + "'s theme in 🔊Lobby")
     .setColor("BLUE")
     .setDescription("Use reaction to stop or `$pinsir theme stop`")
@@ -166,7 +166,7 @@ async function SendSound(db, message) {
         if (!user.bot) {
           reaction.remove();
           StopSound(message);
-          var embed = new Discord.EmbedBuilder()
+          var embed = new Discord.MessageEmbed()
             .setTitle("Add your own theme!")
             .setColor("RED")
             .setDescription(
@@ -181,7 +181,7 @@ async function SendSound(db, message) {
       });
       collector.on("end", async (reaction, user) => {
         reaction.remove();
-        var embed = new Discord.EmbedBuilder()
+        var embed = new Discord.MessageEmbed()
           .setTitle("Add your own theme!")
           .setColor("RED")
           .setDescription(

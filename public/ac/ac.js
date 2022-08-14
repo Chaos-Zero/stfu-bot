@@ -1,6 +1,6 @@
 // This is used to get anime and manga details
 const { get } = require("request-promise");
-const { EmbedBuilder } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 
 // Utility functions
 function jsonConcat(o1, o2) {
@@ -237,7 +237,7 @@ function CreateVillagerEmbed(villagerCount, villagers) {
     }
   }
 
-  let embed = new EmbedBuilder()
+  let embed = new MessageEmbed()
     .setTitle(villager["name"]["name-USen"])
     .setColor("GREEN")
     .setThumbnail(villager["image_uri"])
@@ -351,7 +351,7 @@ async function CreateItemEmbed(
         " of " +
         numbeOfItems
       : "Item available from AC Ver." + item[itemCount]["version"];
-  let embed = new EmbedBuilder()
+  let embed = new MessageEmbed()
     .setTitle(title)
     .setColor(0xdaa520)
     .setThumbnail(item[itemCount]["image_uri"])
@@ -571,7 +571,7 @@ function GetVillager(message, villagers) {
       "I'm sorry, but I don't recognise this Villager."
     );
   }
-  let embed = new EmbedBuilder()
+  let embed = new MessageEmbed()
     .setTitle(villager["name"]["name-USen"])
     .setColor("GREEN")
     .setThumbnail(villager["image_uri"])
@@ -627,7 +627,7 @@ function GetBug(message, bugs) {
   var title = bugName.replace(/(^\w{1})|(\s+\w{1})/g, letter =>
     letter.toUpperCase()
   );
-  let embed = new EmbedBuilder()
+  let embed = new MessageEmbed()
     .setTitle(title)
     .setColor(0x964b00)
     .setThumbnail(bug["image_uri"])
@@ -715,7 +715,7 @@ function GetFish(message, fishes) {
   var title = fishName.replace(/(^\w{1})|(\s+\w{1})/g, letter =>
     letter.toUpperCase()
   );
-  let embed = new EmbedBuilder()
+  let embed = new MessageEmbed()
     .setTitle(title)
     .setThumbnail(fish["image_uri"])
     .setFooter({ text: '"' + fish["catch-phrase"] + '"', iconURL: fish["icon_uri"]});
@@ -829,7 +829,7 @@ function GetFossil(message, fossils) {
   var title = fossilName.replace(/(^\w{1})|(\s+\w{1})/g, letter =>
     letter.toUpperCase()
   );
-  let embed = new EmbedBuilder()
+  let embed = new MessageEmbed()
     .setTitle(title)
     .setColor(0x964b00)
     .setThumbnail(fossil["image_uri"])
@@ -875,7 +875,7 @@ function GetArt(message, arts) {
   var title = artName.replace(/(^\w{1})|(\s+\w{1})/g, letter =>
     letter.toUpperCase()
   );
-  let embed = new EmbedBuilder()
+  let embed = new MessageEmbed()
     .setTitle(title)
     .setColor(0xdaa520)
     .setThumbnail(art["image_uri"])

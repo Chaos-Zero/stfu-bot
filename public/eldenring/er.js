@@ -1,6 +1,6 @@
 // This is used to get anime and manga details
 const { get } = require("request-promise");
-const { EmbedBuilder } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 
 // Utility functions
 function jsonConcat(o1, o2) {
@@ -191,7 +191,7 @@ function GetBoss(message, bosses) {
   //Remove extra space and comma
   bossDropText = bossDropText.slice(0, -2);
 
-  let embed = new EmbedBuilder()
+  let embed = new MessageEmbed()
     //.setAuthor("Boss")
     .setTitle(boss.name)
     .setColor("BLACK")
@@ -269,7 +269,7 @@ function GetCreature(message, creatures) {
   //Remove extra space and comma
   creatureDropText = creatureDropText.slice(0, -2);
 
-  let embed = new EmbedBuilder()
+  let embed = new MessageEmbed()
     //.setAuthor("Boss")
     .setTitle(creature.name)
     .setColor("GRAY")
@@ -329,7 +329,7 @@ function GetAsh(message, ashes) {
     ? (bio = ash.description)
     : (bio = "There is no recorded description of this Ash of War.");
 
-  let embed = new EmbedBuilder()
+  let embed = new MessageEmbed()
     //.setAuthor("Boss")
     .setTitle(ash.name)
     .setColor("GOLD")
@@ -381,7 +381,7 @@ function GetNpc(message, npcs) {
     return message.channel.send("I'm sorry, but I don't recognise this NPC.");
   }
 
-  let embed = new EmbedBuilder()
+  let embed = new MessageEmbed()
     //.setAuthor("Boss")
     .setTitle(npc.name)
     .setColor("PURPLE")
@@ -440,7 +440,7 @@ function GetSpirit(message, spirits) {
     ? (bio = spirit.description)
     : (bio = "There is no recorded description of this spirit.");
 
-  let embed = new EmbedBuilder()
+  let embed = new MessageEmbed()
     //.setAuthor("Boss")
     .setTitle(spirit.name)
     .setColor("WHITE")
@@ -497,7 +497,7 @@ function GetWeapon(message) {
     get(option).then((weaponData) => {
       try {
         let weapon = weaponData.data[0];
-        let embed = new EmbedBuilder()
+        let embed = new MessageEmbed()
           //.setAuthor("Boss")
           .setTitle(weapon.name)
           .setColor("RED")

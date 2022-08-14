@@ -89,7 +89,7 @@ function CreatePostEmbeds(postData) {
   var discordMessages = [];
 
   for (var i = 0; i < postData.length; i++) {
-    var message = new Discord.EmbedBuilder()
+    var message = new Discord.MessageEmbed()
       .setTitle(postData[i].title)
       .setColor(0x00ace6)
       .setAuthor({
@@ -119,7 +119,7 @@ function CreatePostEmbeds(postData) {
       for (var j = 0; j < postData[i].pictures.length; j++) {
         console.log('"' + postData[i].pictures[j] + '"');
         if (j == 0) {
-          let embed = new Discord.EmbedBuilder()
+          let embed = new Discord.MessageEmbed()
           .setTitle('Some title')
           .setURL('https://serebii.net/')
           .setImage(
@@ -127,7 +127,7 @@ function CreatePostEmbeds(postData) {
           );
           embedsPics.push(embed);
         } else {
-          let embed = new Discord.EmbedBuilder()
+          let embed = new Discord.MessageEmbed()
           .setURL('https://serebii.net/')
           .setImage(
             '"' + postData[i].pictures[j] + '"'
