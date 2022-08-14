@@ -528,7 +528,7 @@ function JargonMessage() {
     .setDescription(
       "Here are some acronyms  jargon used regularly in the server.\n\n"
     )
-    .addFields(
+    .addFields([
       {
         name: "IGN",
         value: "In Game Name.",
@@ -590,6 +590,7 @@ function JargonMessage() {
           "Abuse at your own peril.",
         inline: false
       }
+    ]
     )
     .setFooter({
       text: "danimyuu ♡",
