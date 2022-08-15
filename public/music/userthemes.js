@@ -198,8 +198,7 @@ async function SendSound(db, message) {
     })
     .catch(err => console.error(err));
 
-  var voiceChannel = GetChannelByName(message, "Lobby");
-  
+    var voiceChannel = GetChannelByName(message, "Lobby");
 		const stream = ytdl(user.url, { filter: 'audioonly', highWaterMark: 1 << 25 });
 
 		const channel = message.member.voice.channel;

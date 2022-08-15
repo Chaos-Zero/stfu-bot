@@ -69,6 +69,7 @@ function CreateBot() {
     GatewayIntentBits.DirectMessageReactions,
     GatewayIntentBits.MessageContent,
     GatewayIntentBits.GuildVoiceStates,
+    GatewayIntentBits.GuildPresences,
     GatewayIntentBits.GuildEmojisAndStickers,
   ];
 
@@ -78,7 +79,7 @@ function CreateBot() {
   //]);
   const bot = new Discord.Client({
     intents: intents,
-    partials: [Partials.Channel],
+    partials: [Partials.Channel]
   });
   bot.setMaxListeners(0);
 
@@ -87,13 +88,9 @@ function CreateBot() {
   bot.login(`${botKey}`).catch(console.error);
   bot.on("ready", async () => {
     //Set bot card information
-    bot.user.setPresence({
-      activities: [
-        {
-          name: 'Dani\'s homies! Type "$pinsir help" for more info.',
-          type: "LISTENING",
-        },
-      ],
+    bot.user.setPresence({ activities: [{name: 'Dani\'s homies! Type "$pinsir help" for more info.', 
+      type: "LISTENING"
+      }] 
     });
     console.log("This bot is active!");
 
@@ -194,34 +191,25 @@ async function CheckForCommand(message, channel, bot) {
         break;
       case "berry":
         channel.send({
-          files: [
-            {
-              attachment:
-                "https://cdn.glitch.com/c4b320cc-ad43-484e-a884-21d5e1bea6c1%2FBerry%20chart.png?v=1605173644446",
-            },
-          ],
+          files: [{ 
+            attachment: "https://cdn.glitch.com/c4b320cc-ad43-484e-a884-21d5e1bea6c1%2FBerry%20chart.png?v=1605173644446"
+        }]
         });
         DeletePinsirCommand(message);
         break;
       case "balls":
         channel.send({
-          files: [
-            {
-              attachment:
-                "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2F250px-Poke_Balls_GL.png?v=1603746616492",
-            },
-          ],
+          files: [{ 
+            attachment: "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2F250px-Poke_Balls_GL.png?v=1603746616492"
+        }]
         });
         DeletePinsirCommand(message);
         break;
       case "types":
         channel.send({
-          files: [
-            {
-              attachment:
-                "https://cdn.glitch.com/c4b320cc-ad43-484e-a884-21d5e1bea6c1%2FTypes.png?v=1605177423780",
-            },
-          ],
+          files: [{ 
+            attachment: "https://cdn.glitch.com/c4b320cc-ad43-484e-a884-21d5e1bea6c1%2FTypes.png?v=1605177423780"
+        }]
         });
         DeletePinsirCommand(message);
         break;
@@ -273,18 +261,12 @@ async function CheckForCommand(message, channel, bot) {
         DeletePinsirCommand(message);
         break;
       case "shame":
-        //channel.send({
-        //  files: [{
-        //    attachment: "https://cdn.glitch.com/c4b320cc-ad43-484e-a884-21d5e1bea6c1%2FTypes.png?v=1605177423780"
-        //}]
-        //});
         var name = argument[2] != null ? argument[2] : "FAM";
         if (argument[2].toLowerCase().includes("pinsir")) {
-          channel.send({
-            content: "I HAVE NO SHAME",
+          channel.send({ content:"I HAVE NO SHAME",
             files: [
               "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FPinsir%20Bot%20Mad.png?v=1609715165741",
-            ],
+            ]
           });
         } else {
           channel.send({
@@ -434,11 +416,10 @@ function CheckForDumb(message, channel) {
         dumbBotReplyStrings[
           Math.floor(Math.random() * dumbBotReplyStrings.length)
         ];
-      channel.send({
-        content: botQuote,
+      channel.send({ content: botQuote, 
         files: [
           "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FPinsir%20Bot%20Mad.png?v=1609715165741",
-        ],
+        ]
       });
       stringFound = true;
     }
@@ -461,11 +442,10 @@ function CheckForGood(message, channel) {
         goodBotReplyStrings[
           Math.floor(Math.random() * goodBotReplyStrings.length)
         ];
-      channel.send({
-        content: botQuote,
+      channel.send( { content: botQuote, 
         files: [
           "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FPinsir%20Bot%20Happy.png?v=1609715164603",
-        ],
+        ]
       });
       stringFound = true;
     }
@@ -488,8 +468,7 @@ function CheckForLove(message, channel) {
         loveBotReplyStrings[
           Math.floor(Math.random() * loveBotReplyStrings.length)
         ];
-      channel.send({
-        content: botQuote,
+      channel.send({ content: botQuote, 
         files: [
           "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FShiny%20Love%20PINsir.gif?v=1609811193381",
         ],
@@ -502,8 +481,7 @@ function CheckForLove(message, channel) {
 function KimbleQuote(channel) {
   if (!stringFound) {
     var kimbleQuote = kimble[Math.floor(Math.random() * kimble.length)];
-    channel.send({
-      content: kimbleQuote,
+    channel.send({ content: kimbleQuote,
       files: [
         "https://cdn.glitch.com/6024cd69-aae2-43ec-9145-8a104c1b66bb%2FKindergartenCop-650x366.jpg?v=1593599704406",
       ],

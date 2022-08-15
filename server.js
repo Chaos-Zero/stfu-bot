@@ -75,7 +75,7 @@ bot.on("messageUpdate", (oldMessage, newMessage) => {
 });
 
 // Deal with DMs
-bot.on("messageCreate", function (msg) {
+bot.on("messageCreate", function(msg) {
   if (msg.content.toLowerCase() == "templates") {
     SendTemplateMessage(msg);
   } else if (msg.content.toLowerCase() == "jargon") {
