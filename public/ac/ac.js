@@ -598,7 +598,7 @@ function GetVillager(message, villagers) {
     //.setImage(body.data[0].attributes.coverImage.large)
     .setFooter({ text: '"' + villager["catch-phrase"] + '"', iconURL:villager["icon_uri"]});
   //try it
-  message.channel.send(embed);
+  message.channel.send({embeds: [embed], allowedMentions: { repliedUser: false } });
   //message.delete();
 }
 

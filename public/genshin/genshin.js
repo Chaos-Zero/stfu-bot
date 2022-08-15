@@ -58,7 +58,7 @@ function CreateGenshinEmbed(character) {
 
 function GetGenshinCharacter(message, character) {
   try {
-    message.channel.send(CreateGenshinEmbed(genshin.characters(character)));
+    message.channel.send({embeds: [CreateGenshinEmbed(genshin.characters(character))], allowedMentions: { repliedUser: false } });
   } catch {
     message.channel.send("Sorry, I couldn't find that character.");
   }

@@ -32,8 +32,7 @@ function getAnime(message) {
           {name: "Episode Count", value: body.data[0].attributes.episodeCount, inline: true}])
           .setImage(body.data[0].attributes.coverImage.large);
         //try it
-
-        message.channel.send(embed);
+        message.channel.send({embeds: [embed], allowedMentions: { repliedUser: false } });
         msg.delete();
       } catch (err) {
         msg.delete();
@@ -73,8 +72,7 @@ function getManga(message) {
           .addFields({name: "Volumes:", value: body.data[0].attributes.volumeCount, inline: true})
           .setImage(body.data[0].attributes.coverImage.large);
         //try it
-
-        message.channel.send(embed);
+        message.channel.send({embeds: [embed], allowedMentions: { repliedUser: false } });
         msg.delete();
       } catch (err) {
         msg.delete();

@@ -47,7 +47,7 @@ async function SaveVideoUrl(db, message, url) {
   message.delete();
   if (url == "https://www.youtube.com/watch?v=dQw4w9WgXcQ" || url == "https://www.youtube.com/watch?v=iik25wqIuFo" || url == "https://www.youtube.com/watch?v=oHg5SJYRHA0") {
     message.
-  channel.send("**NO U**", {
+  channel.send({ content: "**NO U**", 
       files: [
         "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FpinRickRollin.gif?v=1615475691394"
       ]
@@ -149,7 +149,7 @@ async function SendSound(db, message) {
     .setThumbnail(discordUser.displayAvatarURL());
 
   message.channel
-    .send(embed)
+    .send({embeds: [embed], allowedMentions: { repliedUser: false } })
     .then(m => {
       m.react("⏹️");
 

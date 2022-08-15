@@ -104,7 +104,8 @@ function CreatePostEmbeds(postData) {
         text: "danimyuu ♡",
         iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"}
       );
-    discordMessages.push(message);
+    discordMessages.push({embeds: [message], allowedMentions: { repliedUser: false } });
+    
     if (postData[i].youtubeLink.length > 1) {
       discordMessages.push(
         postData[i].title + " video: " + postData[i].youtubeLink
@@ -125,18 +126,20 @@ function CreatePostEmbeds(postData) {
           .setImage(
             '"' + postData[i].pictures[j] + '"'
           );
-          embedsPics.push(embed);
+          embedsPics.push({embeds: [embed], allowedMentions: { repliedUser: false }}
+            );
         } else {
           let embed = new Discord.EmbedBuilder()
           .setURL('https://serebii.net/')
           .setImage(
             '"' + postData[i].pictures[j] + '"'
           );
-          embedsPics.push(embed);
+          embedsPics.push({embeds: [embed], allowedMentions: { repliedUser: false } });
         }
       }
       discordMessages.push({
         embeds: embedsPics,
+        allowedMentions: { repliedUser: false } 
       });
 
       //var picturesString = '[ ';
