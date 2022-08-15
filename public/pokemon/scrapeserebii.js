@@ -14,7 +14,7 @@ const testMix =
   '<div class="pics"><a href="/cafemix/events.shtml"><img src="/cafemix/machokehiker.jpg" alt="Pokémon Café ReMix" width="300" loading="lazy" /></a></div><div class="subcat"><h3>In The Games Department</h3><p class="title">Pokémon Café ReMix</p><p>A Pokémon Café ReMix login bonus event has begun. This gives you special rewards every day totalling up to 21,000 Golden Acorns while, on Day 5, will give you the special Hiker Outfit for <a href="/cafemix/pokemon/machoke.shtml">Machoke</a>. It  runs until September 1st</p></div> </div> <!-- end_news -->';
 
   const embedColours = {
-    "games": "0x206694", //Dark Blue
+    "games": "0x3498DB", //Blue
     "pokémon of the week": "0xF1C40F", // Gold
     "pokemon of the week": "0xF1C40F", // Gold
     "anime": "0x11806A", //Aqua
@@ -349,9 +349,9 @@ function GetPictureLinks(text) {
 
 function GetEmbedColur(department){
   for (var key in embedColours) {
-    if (department.indexOf(key)!== -1) {
+    if (department.toLowerCase().indexOf(key)!== -1) {
         return embedColours[key];
     }
-    else return defaultEmbedColour;
 }
+return defaultEmbedColour;
 }
