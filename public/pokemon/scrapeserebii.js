@@ -89,22 +89,23 @@ function CreatePostEmbeds(postData) {
   var discordMessages = [];
 
   for (var i = 0; i < postData.length; i++) {
-    var message = new Discord.MessageEmbed()
+    var message = new Discord.EmbedBuilder()
       .setTitle(postData[i].title)
-      .setColor(0x00ace6)
-      .setAuthor(
-        postData[i].department,
-        "https://serebii.net/anime/pokemon/251.gif",
-        "https://serebii.net/"
-      )
+      .setColor("0x00ace6")
+      .setAuthor({
+        name: postData[i].department,
+        iconURL: "https://serebii.net/anime/pokemon/251.gif",
+        url: "https://serebii.net/"
+       })
       //.setThumbnail(postData[i].displayPic)
       .setDescription(postData[i].text)
       .setImage(postData[i].displayPic)
-      .setFooter(
-        "danimyuu ♡",
-        "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"
+      .setFooter({
+        text: "danimyuu ♡",
+        iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"}
       );
-    discordMessages.push(message);
+    discordMessages.push({embeds: [message], allowedMentions: { repliedUser: false } });
+    
     if (postData[i].youtubeLink.length > 1) {
       discordMessages.push(
         postData[i].title + " video: " + postData[i].youtubeLink
@@ -119,24 +120,26 @@ function CreatePostEmbeds(postData) {
       for (var j = 0; j < postData[i].pictures.length; j++) {
         console.log('"' + postData[i].pictures[j] + '"');
         if (j == 0) {
-          let embed = new Discord.MessageEmbed()
+          let embed = new Discord.EmbedBuilder()
           .setTitle('Some title')
           .setURL('https://serebii.net/')
           .setImage(
             '"' + postData[i].pictures[j] + '"'
           );
-          embedsPics.push(embed);
+          embedsPics.push({embeds: [embed], allowedMentions: { repliedUser: false }}
+            );
         } else {
-          let embed = new Discord.MessageEmbed()
+          let embed = new Discord.EmbedBuilder()
           .setURL('https://serebii.net/')
           .setImage(
             '"' + postData[i].pictures[j] + '"'
           );
-          embedsPics.push(embed);
+          embedsPics.push({embeds: [embed], allowedMentions: { repliedUser: false } });
         }
       }
       discordMessages.push({
         embeds: embedsPics,
+        allowedMentions: { repliedUser: false } 
       });
 
       //var picturesString = '[ ';

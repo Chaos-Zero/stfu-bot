@@ -1,7 +1,9 @@
 const { Client, RichEmbed } = require("discord.js");
 const Discord = require("discord.js");
+const { joinVoiceChannel, createAudioPlayer, createAudioResource } = require('@discordjs/voice');
 const fs = require("fs");
 const ytdl = require("ytdl-core");
+const DiscordMusicPlayer = require('@discordjs/voice');
 
 eval(fs.readFileSync("./public/database/read.js") + "");
 eval(fs.readFileSync("./public/database/write.js") + "");
@@ -47,7 +49,7 @@ async function SaveVideoUrl(db, message, url) {
   message.delete();
   if (url == "https://www.youtube.com/watch?v=dQw4w9WgXcQ" || url == "https://www.youtube.com/watch?v=iik25wqIuFo" || url == "https://www.youtube.com/watch?v=oHg5SJYRHA0") {
     message.
-  channel.send("**NO U**", {
+  channel.send({ content: "**NO U**", 
       files: [
         "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FpinRickRollin.gif?v=1615475691394"
       ]
@@ -142,23 +144,23 @@ async function SendSound(db, message) {
   message.delete();
   var discordUser = GetUserFromId(message, user.userId);
 
-  var embed = new Discord.MessageEmbed()
+  var embed = new Discord.EmbedBuilder()
     .setTitle("Playing " + user.username + "'s theme in 🔊Lobby")
-    .setColor("BLUE")
+    .setColor("0x0000FF")
     .setDescription("Use reaction to stop or `$pinsir theme stop`")
     .setThumbnail(discordUser.displayAvatarURL());
 
   message.channel
-    .send(embed)
+    .send({embeds: [embed], allowedMentions: { repliedUser: false } })
     .then(m => {
       m.react("⏹️");
 
       const leftFilter = reaction => reaction.emoji.name === "⏹️";
+      var filter = (reaction, user) => ["⏹️"].includes(reaction.emoji.name);
       const collector = m.createReactionCollector(
         // only collect left and right arrow reactions from the message author
-        (reaction, user) => ["⏹️"].includes(reaction.emoji.name),
         {
-          time: 10 * 60 * 1000
+        filter, time: 10 * 60 * 1000
         }
       ); // 10 min
 
@@ -166,9 +168,9 @@ async function SendSound(db, message) {
         if (!user.bot) {
           reaction.remove();
           StopSound(message);
-          var embed = new Discord.MessageEmbed()
+          var embed = new Discord.EmbedBuilder()
             .setTitle("Add your own theme!")
-            .setColor("RED")
+            .setColor("0xFF0000")
             .setDescription(
               "Use `$pinsir theme add [youtube url]`" +
                 "\n\nYou can play your theme using `$pinsir theme play`.\nAdd a user id or ping to play another users theme."
@@ -176,14 +178,14 @@ async function SendSound(db, message) {
             .setThumbnail(
               "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FConductor.png?v=1615424184972"
             );
-          m.edit(embed);
+          m.edit({embeds : [embed]});
         }
       });
       collector.on("end", async (reaction, user) => {
         reaction.remove();
-        var embed = new Discord.MessageEmbed()
+        var embed = new Discord.EmbedBuilder()
           .setTitle("Add your own theme!")
-          .setColor("RED")
+          .setColor("0xFF0000")
           .setDescription(
             "Use `$pinsir theme add [youtube url]`" +
               "\n\nYou can play your theme using `$pinsir theme play`.\nAdd a user id or ping to play another users theme."
@@ -191,39 +193,80 @@ async function SendSound(db, message) {
           .setThumbnail(
             "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FConductor.png?v=1615424184972"
           );
-        m.edit(embed);
+        m.edit({embeds: [embed]});
       });
     })
     .catch(err => console.error(err));
 
   var voiceChannel = GetChannelByName(message, "Lobby");
-  voiceChannel
-    .join()
-    .then(connection => {
-      const dispatcher = connection.play(
-        ytdl(
-          user.url,
-          {
-            filter: "audio",
-            quality: "highestaudio",
-            highWaterMark: 1 << 25
-          },
-          { volume: 0.15 }
-        )
-      );
-      dispatcher.on("end", end => {
-        voiceChannel.leave();
-      });
-    })
-    .catch(console.error);
+  
+		const stream = ytdl(user.url, { filter: 'audioonly', highWaterMark: 1 << 25 });
+
+		const channel = message.member.voice.channel;
+
+		const player = createAudioPlayer();
+		const resource = createAudioResource(stream);
+
+		const connection = joinVoiceChannel({
+			channelId: voiceChannel.id,
+			guildId: message.guild.id,
+			adapterCreator: message.guild.voiceAdapterCreator, 
+      selfDeaf: false
+		});
+    
+		player.play(resource);
+		connection.subscribe(player);
+
+		player.on(DiscordMusicPlayer.AudioPlayerStatus.Idle, () => {
+			StopSound(message)
+		});
+  
+  
+  
+  
+  
+    //const connection = joinVoiceChannel({channelId:voiceChannel.id, guildId: message.guildId, adapterCreator: message.guild.voiceAdapterCreator, selfDeaf: false})
+    
+    //const stream =  ytdl(user.url, { filter: 'audioonly' });
+    
+		//const player = createAudioPlayer();
+		//const resource = createAudioResource(stream);
+    
+    //player.play(resource);
+		//connection.subscribe(player);
+
+		//player.on(Discord.AudioPlayerStatus.Idle, () => {
+		//	connection.destroy();
+		//});
+  
+  
+  
+    //.then(connection => {
+    //  const dispatcher = connection.play(
+    //    ytdl(
+    //      user.url,
+    //      {
+    //       filter: "audio",
+    //        quality: "highestaudio",
+    //        highWaterMark: 1 << 25
+    //      },
+    //      { volume: 0.15 }
+    //    )
+    //  );
+    //  dispatcher.on("end", end => {
+    //    voiceChannel.leave();
+    //  });
+    //})
+    //.catch(console.error);
 }
 
 function StopSound(message) {
   var voiceChannel = GetChannelByName(message, "Lobby");
-  voiceChannel
-    .join()
-    .then(connection => {
-      voiceChannel.leave();
-    })
-    .catch(console.error);
+  const connection = DiscordMusicPlayer.joinVoiceChannel({
+			channelId: voiceChannel.id,
+			guildId: message.guild.id,
+			adapterCreator: message.guild.voiceAdapterCreator, 
+      selfDeaf: false
+		});
+  connection.destroy();
 }

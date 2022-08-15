@@ -1,6 +1,6 @@
 // This is used to get anime and manga details
 const { get } = require("request-promise");
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 // Utility functions
 function jsonConcat(o1, o2) {
@@ -237,9 +237,9 @@ function CreateVillagerEmbed(villagerCount, villagers) {
     }
   }
 
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     .setTitle(villager["name"]["name-USen"])
-    .setColor("GREEN")
+    .setColor("0x00FF00")
     .setThumbnail(villager["image_uri"])
     .addFields({
       name: "Birthday",
@@ -262,7 +262,7 @@ function CreateVillagerEmbed(villagerCount, villagers) {
       inline: true
     })
     //.setImage(body.data[0].attributes.coverImage.large)
-    .setFooter('"' + villager["catch-phrase"] + '"', villager["icon_uri"]);
+    .setFooter({ text: '"' + villager["catch-phrase"] + '"', iconURL: villager["icon_uri"]});
   //try it
 
   return embed;
@@ -351,13 +351,13 @@ async function CreateItemEmbed(
         " of " +
         numbeOfItems
       : "Item available from AC Ver." + item[itemCount]["version"];
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     .setTitle(title)
-    .setColor(0xdaa520)
+    .setColor("0xdaa520")
     .setThumbnail(item[itemCount]["image_uri"])
-    .setFooter(
-      footerText,
-      "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FGyroid.png?v=1614961148871"
+    .setFooter({
+      text: footerText,
+      iconURL:"https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FGyroid.png?v=1614961148871" }
     );
 
   if (item[itemCount]["buy-price"]) {
@@ -509,18 +509,17 @@ function CycleVillager(message, villagers) {
   var embed = CreateVillagerEmbed(villagerCount, villagers);
 
   message.channel
-    .send(embed)
+    .send({embeds: [embed]})
     .then(m => {
       m.react("⬅️");
       m.react("➡️");
 
       const leftFilter = reaction => reaction.emoji.name === "⬅️";
       const rightFilter = reaction => reaction.emoji.name === "➡️";
-      const collector = m.createReactionCollector(
+      var fiter = (reaction, user) => ["⬅️", "➡️"].includes(reaction.emoji.name);
+      const collector = m.createReactionCollector({
         // only collect left and right arrow reactions from the message author
-        (reaction, user) => ["⬅️", "➡️"].includes(reaction.emoji.name),
-        {
-          time: 5 * 60 * 1000
+        fiter, time: 5 * 60 * 1000
         }
       ); // 5 min
 
@@ -538,7 +537,7 @@ function CycleVillager(message, villagers) {
             reaction.emoji.name === "⬅️" ? villagerCount-- : villagerCount++;
           }
           var embed = CreateVillagerEmbed(villagerCount, villagers);
-          m.edit(embed);
+          m.edit({embeds: [embed]});
           //m.react("⬅️");
           //m.react("➡️");
         }
@@ -572,9 +571,9 @@ function GetVillager(message, villagers) {
       "I'm sorry, but I don't recognise this Villager."
     );
   }
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     .setTitle(villager["name"]["name-USen"])
-    .setColor("GREEN")
+    .setColor("0x00FF00")
     .setThumbnail(villager["image_uri"])
     .addFields({
       name: "Birthday",
@@ -597,9 +596,9 @@ function GetVillager(message, villagers) {
       inline: true
     })
     //.setImage(body.data[0].attributes.coverImage.large)
-    .setFooter('"' + villager["catch-phrase"] + '"', villager["icon_uri"]);
+    .setFooter({ text: '"' + villager["catch-phrase"] + '"', iconURL:villager["icon_uri"]});
   //try it
-  message.channel.send(embed);
+  message.channel.send({embeds: [embed]});
   //message.delete();
 }
 
@@ -628,9 +627,9 @@ function GetBug(message, bugs) {
   var title = bugName.replace(/(^\w{1})|(\s+\w{1})/g, letter =>
     letter.toUpperCase()
   );
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     .setTitle(title)
-    .setColor(0x964b00)
+    .setColor("0x964b00")
     .setThumbnail(bug["image_uri"])
     .addFields({
       name: "Location",
@@ -653,7 +652,7 @@ function GetBug(message, bugs) {
       inline: false
     })
     //.setImage(body.data[0].attributes.coverImage.large)
-    .setFooter('"' + bug["catch-phrase"] + '"', bug["icon_uri"]);
+    .setFooter({ text: '"' + bug["catch-phrase"] + '"', iconURL: bug["icon_uri"]});
 
   if (bug["availability"]["isAllDay"] == true) {
     embed.addFields({
@@ -687,7 +686,7 @@ function GetBug(message, bugs) {
     });
   }
 
-  message.channel.send(embed);
+  message.channel.send({embeds: [embed]});
   //message.delete();
 }
 
@@ -716,10 +715,10 @@ function GetFish(message, fishes) {
   var title = fishName.replace(/(^\w{1})|(\s+\w{1})/g, letter =>
     letter.toUpperCase()
   );
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     .setTitle(title)
     .setThumbnail(fish["image_uri"])
-    .setFooter('"' + fish["catch-phrase"] + '"', fish["icon_uri"]);
+    .setFooter({ text: '"' + fish["catch-phrase"] + '"', iconURL: fish["icon_uri"]});
 
   if (fish["speed"]) {
     embed.addFields({
@@ -727,14 +726,14 @@ function GetFish(message, fishes) {
       value: fish["speed"],
       inline: true
     });
-    embed.setColor(0x006994);
+    embed.setColor("0x006994");
   } else if (fish["availability"]["location"]) {
     embed.addFields({
       name: "Location",
       value: fish["availability"]["location"],
       inline: true
     });
-    embed.setColor(0xadd8e6);
+    embed.setColor("0xadd8e6");
   }
   embed.addFields({
     name: "Price",
@@ -799,7 +798,7 @@ function GetFish(message, fishes) {
     });
   }
 
-  message.channel.send(embed);
+  message.channel.send({embeds: [embed]});
   //message.delete();
 }
 
@@ -830,9 +829,9 @@ function GetFossil(message, fossils) {
   var title = fossilName.replace(/(^\w{1})|(\s+\w{1})/g, letter =>
     letter.toUpperCase()
   );
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     .setTitle(title)
-    .setColor(0x964b00)
+    .setColor("0x964b00")
     .setThumbnail(fossil["image_uri"])
     .addFields({
       name: "Price",
@@ -845,7 +844,7 @@ function GetFossil(message, fossils) {
       inline: false
     });
 
-  message.channel.send(embed);
+  message.channel.send({embeds: [embed]});
   //message.delete();
 }
 
@@ -876,9 +875,9 @@ function GetArt(message, arts) {
   var title = artName.replace(/(^\w{1})|(\s+\w{1})/g, letter =>
     letter.toUpperCase()
   );
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     .setTitle(title)
-    .setColor(0xdaa520)
+    .setColor("0xdaa520")
     .setThumbnail(art["image_uri"])
     .addFields({
       name: "Buy Price",
@@ -908,7 +907,7 @@ function GetArt(message, arts) {
     inline: false
   });
 
-  message.channel.send(embed);
+  message.channel.send({embeds: [embed]});
   //message.delete();
 }
 
@@ -930,18 +929,18 @@ async function GetItem(message, items, hangables) {
 
   if (parseInt(numberOfItems) > 1) {
     message.channel
-      .send(embed[0])
+      .send({embeds: [embed[0]]})
       .then(m => {
         m.react("⬅️");
         m.react("➡️");
 
         const leftFilter = reaction => reaction.emoji.name === "⬅️";
         const rightFilter = reaction => reaction.emoji.name === "➡️";
+        var filter = (reaction, user) => ["⬅️", "➡️"].includes(reaction.emoji.name);
         const collector = m.createReactionCollector(
           // only collect left and right arrow reactions from the message author
-          (reaction, user) => ["⬅️", "➡️"].includes(reaction.emoji.name),
           {
-            time: 5 * 60 * 1000
+            filter,time: 5 * 60 * 1000
           }
         ); // 5 min
 
@@ -965,13 +964,13 @@ async function GetItem(message, items, hangables) {
               items,
               hangables
             );
-            m.edit(embed[0]);
+            m.edit({embeds: [embed[0]] } );
           }
         });
       })
       .catch(err => console.error(err));
     //message.delete();
   } else {
-    message.channel.send(embed[0]);
+    message.channel.send({embeds: [embed[0]]});
   }
 }

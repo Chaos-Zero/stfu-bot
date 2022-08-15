@@ -5,27 +5,27 @@ function TerrainMessage(message) {
   const argument = message.content.split(" ");
   switch (String(argument[2]).toLowerCase()) {
     case "electric":
-      return ElectricTerrainMessage();
+      message.channel.send({embeds: [ElectricTerrainMessage()], allowedMentions: { repliedUser: false } });
       break;
     case "grass":
     case "grassy":
-      return GrassyTerrainMessage();
+      message.channel.send({embeds: [GrassyTerrainMessage()], allowedMentions: { repliedUser: false } });
       break;
     case "misty":
-      return MistyTerrainMessage();
+      message.channel.send({embeds: [MistyTerrainMessage()], allowedMentions: { repliedUser: false } });
       break;
     case "psychic":
-      return PsychicTerrainMessage();
+      message.channel.send({embeds: [PsychicTerrainMessage()], allowedMentions: { repliedUser: false } });
       break;
     default:
-      return "You must specify one of the following terrains:\n Electric, Grassy, Misty, Psychic.";
+      message.channel.send("You must specify one of the following terrains:\n Electric, Grassy, Misty, Psychic.");
   }
 }
 
 function ElectricTerrainMessage() {
-  const Embed = new Discord.MessageEmbed()
+  const Embed = new Discord.EmbedBuilder()
     .setTitle("<:Electric:778732680870625281> Electric Terrain")
-    .setColor(0xffff00)
+    .setColor("0xffff00")
     //.setImage(
     ///"https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2F5c60775e-2ebb-461c-9f0b-0af6fb375e5c.image.png?v=1605728589335"
     //)
@@ -48,9 +48,9 @@ function ElectricTerrainMessage() {
 }
 
 function GrassyTerrainMessage() {
-  const Embed = new Discord.MessageEmbed()
+  const Embed = new Discord.EmbedBuilder()
     .setTitle("<:Grassy:778732681294643242> Grassy Terrain")
-    .setColor(0x98ff98)
+    .setColor("0x98ff98")
     //.setImage(
     //"https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2Fe1a40e3e-0567-4d1a-9b82-0e0c73e11b1c.image.png?v=1605728962486"
     //)
@@ -73,9 +73,9 @@ function GrassyTerrainMessage() {
 }
 
 function MistyTerrainMessage() {
-  const Embed = new Discord.MessageEmbed()
+  const Embed = new Discord.EmbedBuilder()
     .setTitle("<:NoDragon:778732681201713176> Misty Terrain")
-    .setColor(0xb3d5e0)
+    .setColor("0xb3d5e0")
     //.setImage(
     //"https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2F641332e0-4d14-4599-b456-be2e5dc759b8.image.png?v=1605731508825"
     //)
@@ -100,9 +100,9 @@ function MistyTerrainMessage() {
 }
 
 function PsychicTerrainMessage() {
-  const Embed = new Discord.MessageEmbed()
+  const Embed = new Discord.EmbedBuilder()
     .setTitle("<:Psychic:778732680883208203> Psychic Terrain")
-    .setColor(0xff1493)
+    .setColor("0xff1493")
     //.setThumbnail(
     //  "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2F4a3fa1ce-caaf-4a07-a8e2-5ded2a445517.image.png?v=1605731830585"
     //)

@@ -174,9 +174,9 @@ async function ChangeId(db, message) {
   // Set a user using Lodash shorthand syntax
   message.author.createDM().then(dmchannel => {
     //if (!foundUser) {
-    var Embed = new Discord.MessageEmbed()
+    var Embed = new Discord.EmbedBuilder()
       .setTitle("Add Game Credentials")
-      .setColor(0xffffff)
+      .setColor("0xffffff")
       .setThumbnail(
         "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FmlgBotSeat.png?v=1611365651832"
       )
@@ -230,9 +230,9 @@ async function ChangeId(db, message) {
           inline: true
         }
       )
-      .setFooter(
-        "danimyuu ♡",
-        "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"
+      .setFooter({
+        text: "danimyuu ♡",
+        iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"}
       );
     dmchannel.send(Embed);
     //}
@@ -660,9 +660,9 @@ async function RemoveId(db, message) {
   // Set a user using Lodash shorthand syntax
   message.author.createDM().then(dmchannel => {
     //if (!foundUser) {
-    var Embed = new Discord.MessageEmbed()
+    var Embed = new Discord.EmbedBuilder()
       .setTitle("Remove Game Credentials")
-      .setColor(0x8c8c8c)
+      .setColor("0x8c8c8c")
       .setThumbnail(
         "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FmlgBotSeat.png?v=1611365651832"
       )
@@ -716,9 +716,9 @@ async function RemoveId(db, message) {
           inline: true
         }
       )
-      .setFooter(
-        "danimyuu ♡",
-        "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"
+      .setFooter({
+        text: "danimyuu ♡",
+        iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"}
       );
     dmchannel.send(Embed);
     //}
@@ -834,16 +834,16 @@ function AddEmptyField(fields, embed) {
 
 function CreateGameIdEmbedDetails(user, discordUser, message) {
   let fields = 0;
-  let embed = new Discord.MessageEmbed()
+  let embed = new Discord.EmbedBuilder()
     .setTitle(user.username + "'s Game Credentials")
-    .setColor(0xffd700)
+    .setColor("0xffd700")
     //  .setTitle(`${title1}`)
     //.setDescription("Blah blah")
     //.setAuthor(user.username + "'s Game Credentials")
     .setThumbnail(discordUser.displayAvatarURL())
-    .setFooter(
-      "danimyuu ♡",
-      "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"
+    .setFooter({
+      text: "danimyuu ♡",
+      iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"}
     );
 
   //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")

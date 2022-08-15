@@ -283,12 +283,12 @@ async function SendDAHostedByMessage(db, message) {
         "Nobody has a path that leads to **" + pokemon[1] + "** at the time.";
       usernames = "\u200b";
     }
-    var embed = new Discord.MessageEmbed()
-      .setColor(0xffd700)
-      .setAuthor(
-        message.author.username + " is looking to battle a " + pokemon[1],
-        message.author.displayAvatarURL()
-      )
+    var embed = new Discord.EmbedBuilder()
+      .setColor("0xffd700")
+      .setAuthor({
+        name: message.author.username + " is looking to battle a " + pokemon[1],
+        iconURL: message.author.displayAvatarURL()
+      })
       //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
       .addFields({
         name: name,
@@ -460,14 +460,14 @@ async function SearchDAPokemon(db, message) {
         "** at the time.";
       usernames = "\u200b";
     }
-    var embed = new Discord.MessageEmbed()
-      .setColor(0xffd700)
-      .setAuthor(
-        message.author.username +
+    var embed = new Discord.EmbedBuilder()
+      .setColor("0xffd700")
+      .setAuthor({
+        name: message.author.username +
           " is looking for allies to battle a " +
           pokemon[1],
-        message.author.displayAvatarURL()
-      )
+          iconURL: message.author.displayAvatarURL()
+  })
       //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
       .addFields({
         name: name,
@@ -546,15 +546,15 @@ async function PingSearchDAPokemon(db, message) {
           pokemon[1] +
           "** at the time.";
       }
-      var embed = new Discord.MessageEmbed()
-        .setColor(0xffd700)
-        .setAuthor(
-          message.author.username +
+      var embed = new Discord.EmbedBuilder()
+        .setColor("0xffd700")
+        .setAuthor({
+          name: message.author.username +
             " needs allies to battle a " +
             pokemon[1] +
             "!",
-          message.author.displayAvatarURL()
-        )
+            iconURL: message.author.displayAvatarURL()
+    })
         //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
         .addFields({
           name: name,

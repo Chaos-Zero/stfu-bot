@@ -61,13 +61,14 @@ var stringFound = false;
 function CreateBot() {
   const intents = [
     //'NON_PRIVILEGED', // include all non-privileged intents, would be better to specify which ones you actually need
-    GatewayIntentBits.GuildMembers, // lets you request guild members (i.e. fixes the issue)
     GatewayIntentBits.Guilds,
-    // GatewayIntentBits.DirectMessageReactions,
+    GatewayIntentBits.GuildMembers, // lets you request guild members (i.e. fixes the issue)
     GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMessageReactions,
     GatewayIntentBits.DirectMessages,
-    // GatewayIntentBits.GuildPresences,
+    GatewayIntentBits.DirectMessageReactions,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildVoiceStates,
     GatewayIntentBits.GuildEmojisAndStickers,
   ];
 
@@ -77,6 +78,7 @@ function CreateBot() {
   //]);
   const bot = new Discord.Client({
     intents: intents,
+    partials: [Partials.Channel],
   });
   bot.setMaxListeners(0);
 
@@ -85,8 +87,13 @@ function CreateBot() {
   bot.login(`${botKey}`).catch(console.error);
   bot.on("ready", async () => {
     //Set bot card information
-    bot.user.setActivity('Dani\'s homies! Type "$pinsir help" for more info.', {
-      type: "LISTENING",
+    bot.user.setPresence({
+      activities: [
+        {
+          name: 'Dani\'s homies! Type "$pinsir help" for more info.',
+          type: "LISTENING",
+        },
+      ],
     });
     console.log("This bot is active!");
 
@@ -109,7 +116,8 @@ async function CheckForCommand(message, channel, bot) {
     firstWord == "$pisnir" ||
     firstWord == "$pin" ||
     firstWord == "$pinisir" ||
-    firstWord == "$pinser"
+    firstWord == "$pinser" ||
+    firstWord == "$t"
   ) {
     if (
       firstWord == "$pisnir" ||
@@ -168,7 +176,7 @@ async function CheckForCommand(message, channel, bot) {
         //GetGenshinCharacter(message, String(argument[2]));
         break;
       case "jargon":
-        message.author.send(JargonMessage());
+        JargonMessage(message);
         DeletePinsirCommand(message);
         break;
       case "commands":
@@ -181,40 +189,49 @@ async function CheckForCommand(message, channel, bot) {
         DeletePinsirCommand(message);
         break;
       case "help":
-        message.author.send(CreateDmMessage(true));
+        CreateDmMessage(message, true);
         DeletePinsirCommand(message);
         break;
       case "berry":
-        channel.send("", {
+        channel.send({
           files: [
-            "https://cdn.glitch.com/c4b320cc-ad43-484e-a884-21d5e1bea6c1%2FBerry%20chart.png?v=1605173644446",
+            {
+              attachment:
+                "https://cdn.glitch.com/c4b320cc-ad43-484e-a884-21d5e1bea6c1%2FBerry%20chart.png?v=1605173644446",
+            },
           ],
         });
         DeletePinsirCommand(message);
         break;
       case "balls":
-        channel.send("", {
+        channel.send({
           files: [
-            "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2F250px-Poke_Balls_GL.png?v=1603746616492",
+            {
+              attachment:
+                "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2F250px-Poke_Balls_GL.png?v=1603746616492",
+            },
           ],
         });
         DeletePinsirCommand(message);
         break;
       case "types":
-        channel.send("", {
+        channel.send({
           files: [
-            "https://cdn.glitch.com/c4b320cc-ad43-484e-a884-21d5e1bea6c1%2FTypes.png?v=1605177423780",
+            {
+              attachment:
+                "https://cdn.glitch.com/c4b320cc-ad43-484e-a884-21d5e1bea6c1%2FTypes.png?v=1605177423780",
+            },
           ],
         });
         DeletePinsirCommand(message);
         break;
       case "terrain":
-        channel.send(TerrainMessage(message));
+        TerrainMessage(message);
         DeletePinsirCommand(message);
         break;
       case "giveaway":
       case "hosting":
-        channel.send(HostingUpMessage(db, message));
+        HostingUpMessage(db, message);
         break;
       case "rehost":
         rehost(db, message);
@@ -233,11 +250,11 @@ async function CheckForCommand(message, channel, bot) {
         DeletePinsirCommand(message);
         break;
       case "number":
-        channel.send(PokemonNumberMessage(message, bot));
+        PokemonNumberMessage(message, bot);
         DeletePinsirCommand(message);
         break;
       case "balltism":
-        channel.send(BalltismMessage(message, bot));
+        BalltismMessage(message, bot);
         break;
       case "testest":
         //console.log(GetSplitPosts(GetLatestPost(html)));
@@ -256,24 +273,29 @@ async function CheckForCommand(message, channel, bot) {
         DeletePinsirCommand(message);
         break;
       case "shame":
+        //channel.send({
+        //  files: [{
+        //    attachment: "https://cdn.glitch.com/c4b320cc-ad43-484e-a884-21d5e1bea6c1%2FTypes.png?v=1605177423780"
+        //}]
+        //});
         var name = argument[2] != null ? argument[2] : "FAM";
         if (argument[2].toLowerCase().includes("pinsir")) {
-          channel.send("I HAVE NO SHAME", {
+          channel.send({
+            content: "I HAVE NO SHAME",
             files: [
               "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FPinsir%20Bot%20Mad.png?v=1609715165741",
             ],
           });
         } else {
-          channel.send(
-            "SHAME ON YOU " +
+          channel.send({
+            content:
+              "SHAME ON YOU " +
               name.toUpperCase() +
               " FOR DOING THAT THING YOU DONE DID!",
-            {
-              files: [
-                "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FPinsirShame.png?v=1609715165685",
-              ],
-            }
-          );
+            files: [
+              "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FPinsirShame.png?v=1609715165685",
+            ],
+          });
         }
         DeletePinsirCommand(message);
         break;
@@ -368,7 +390,7 @@ function CheckForBlacklist(message, channel) {
         message.author.id +
         ">!";
       channel.send(pinsirMessage);
-      message.author.send(CreateDmMessage(false));
+      CreateDmMessage(message, false);
       stringFound = true;
     }
   }
@@ -412,7 +434,8 @@ function CheckForDumb(message, channel) {
         dumbBotReplyStrings[
           Math.floor(Math.random() * dumbBotReplyStrings.length)
         ];
-      channel.send(botQuote, {
+      channel.send({
+        content: botQuote,
         files: [
           "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FPinsir%20Bot%20Mad.png?v=1609715165741",
         ],
@@ -438,7 +461,8 @@ function CheckForGood(message, channel) {
         goodBotReplyStrings[
           Math.floor(Math.random() * goodBotReplyStrings.length)
         ];
-      channel.send(botQuote, {
+      channel.send({
+        content: botQuote,
         files: [
           "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FPinsir%20Bot%20Happy.png?v=1609715164603",
         ],
@@ -464,7 +488,8 @@ function CheckForLove(message, channel) {
         loveBotReplyStrings[
           Math.floor(Math.random() * loveBotReplyStrings.length)
         ];
-      channel.send(botQuote, {
+      channel.send({
+        content: botQuote,
         files: [
           "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FShiny%20Love%20PINsir.gif?v=1609811193381",
         ],
@@ -477,7 +502,8 @@ function CheckForLove(message, channel) {
 function KimbleQuote(channel) {
   if (!stringFound) {
     var kimbleQuote = kimble[Math.floor(Math.random() * kimble.length)];
-    channel.send(kimbleQuote, {
+    channel.send({
+      content: kimbleQuote,
       files: [
         "https://cdn.glitch.com/6024cd69-aae2-43ec-9145-8a104c1b66bb%2FKindergartenCop-650x366.jpg?v=1593599704406",
       ],

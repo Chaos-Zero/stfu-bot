@@ -59,7 +59,7 @@ function HostingUpMessage(db, message) {
       RemovePins(message);
       const pinsirMessage = EventEndMessage(message,username)
       DeletePinsirCommand(message);
-      return pinsirMessage;
+      channel.send({embeds: [pinsirMessage], allowedMentions: { repliedUser: false } });
     }
 
     if (isNaN(pokeIndex)) {
@@ -71,9 +71,9 @@ function HostingUpMessage(db, message) {
         username +
         ", I do not know this Pokémon. I may have it written down differently. \nTry using the the Pokémon's National Dex number like '127' for Pinsir.\n You can find the numbers here: https://www.serebii.net/pokedex-swsh/";
       if (argument[1] != "giveaway") {
-        return pinsirMessage;
+        channel.send({embeds: [pinsirMessage], allowedMentions: { repliedUser: false } });
       } else {
-        return "Did you mean to use `$pinsir giveaway end`?.\n Use `$pinsir commands` to see how to use PINsir";
+        message.channel.send("Did you mean to use `$pinsir giveaway end`?.\n Use `$pinsir commands` to see how to use PINsir");
       }
     }
     const pokeIndexNumber = pokeIndex;
@@ -92,9 +92,9 @@ function HostingUpMessage(db, message) {
       /\d/.test(raidCode) && message.content.includes("rc:")
         ? raidCode
         : "No code needed!";
-    var embed = new Discord.MessageEmbed()
-      .setColor(0xffd700)
-      .setAuthor(username + " is hosting!", message.author.displayAvatarURL())
+    var embed = new Discord.EmbedBuilder()
+      .setColor("0xffd700")
+      .setAuthor({ name: username + " is hosting!", iconURL:message.author.displayAvatarURL()})
       //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
       .addFields({
         name:
@@ -119,9 +119,9 @@ function HostingUpMessage(db, message) {
     SaveHostMessage(db, username, embed);
   }
   if (argument[1] != "giveaway") {
-    return embed;
+    message.channel.send({embeds: [embed], allowedMentions: { repliedUser: false } })
   } else {
-    return "Did you mean to use `$pinsir giveaway end`?.\n Use `$pinsir commands` to see how to use PINsir";
+    message.channel.send("Did you mean to use `$pinsir giveaway end`?.\n Use `$pinsir commands` to see how to use PINsir");
   }
 }
 
@@ -166,22 +166,22 @@ function rehost(db, message) {
     console.log(dbMessage.message);
     var sendingMessage = dbMessage.message;
 
-    message.channel.send(sendingMessage);
+    message.channel.send({embeds: [sendingMessage], allowedMentions: { repliedUser: false } });
   } else {
-    message.channel.send(CreateBasicHostMessage());
+    message.channel.send({embeds: [CreateBasicHostMessage()], allowedMentions: { repliedUser: false } });
   }
 }
 
 function CreateBasicHostMessage(username) {
-  var embed = new Discord.MessageEmbed()
-    .setColor(0xffd700)
-    .setAuthor(username + " is hosting!")
+  var embed = new Discord.EmbedBuilder()
+    .setColor("0xffd700")
+    .setAuthor({name: username + " is hosting!"})
     .setImage(
       "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2Fclassic_pinsirbot.png?v=1597703026332"
     )
-    .setFooter(
-      "Image by silver#7472",
-      "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2Fsilver.png?v=1597704076569"
+    .setFooter({
+      text: "Image by silver#7472",
+      iconURL: "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2Fsilver.png?v=1597704076569"}
     );
   return embed;
 }

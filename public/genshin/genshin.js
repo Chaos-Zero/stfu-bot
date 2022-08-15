@@ -3,9 +3,9 @@ const Discord = require("discord.js");
 //const genshin = require("genshin-impact-api");
 
 function CreateGenshinEmbed(character) {
-  return new Discord.MessageEmbed()
+  return new Discord.EmbedBuilder()
     .setTitle("Genshin Impact Bio: " + character.name)
-    .setColor(0x00ace6)
+    .setColor("0x00ace6")
     .setThumbnail(character.image)
     .setDescription(character.description)
     .addFields(
@@ -50,15 +50,15 @@ function CreateGenshinEmbed(character) {
         inline: true
       }
     )
-    .setFooter(
-      "danimyuu ♡",
-      "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"
+    .setFooter({
+      text: "danimyuu ♡",
+      iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"}
     );
 }
 
 function GetGenshinCharacter(message, character) {
   try {
-    message.channel.send(CreateGenshinEmbed(genshin.characters(character)));
+    message.channel.send({embeds: [CreateGenshinEmbed(genshin.characters(character))], allowedMentions: { repliedUser: false } });
   } catch {
     message.channel.send("Sorry, I couldn't find that character.");
   }

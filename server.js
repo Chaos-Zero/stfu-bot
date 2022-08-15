@@ -13,13 +13,13 @@ const app = express();
 //Set up bot
 const bot = CreateBot();
 FetchSerebii();
-//SetAcEntries();
+SetAcEntries();
 //SetErEntries();
 
 var count = 10;
 
 // Deal with Discord Messages
-bot.on("messageCreate", message => {
+bot.on("messageCreate", (message) => {
   //console.log(message)
   let thisChannel = message.channel;
   CheckForBadWords(message, thisChannel);
@@ -28,7 +28,7 @@ bot.on("messageCreate", message => {
   // Remove auto pin message
   if (message.type === "PINS_ADD") {
     message.delete();
-    GetPinnedMessages(thisChannel).then(result => {
+    GetPinnedMessages(thisChannel).then((result) => {
       console.log("Got PinnedMessages");
       console.log("Writing user " + result[0].author.username);
       SavePinMessage(
@@ -75,11 +75,11 @@ bot.on("messageUpdate", (oldMessage, newMessage) => {
 });
 
 // Deal with DMs
-bot.on("message", function(msg) {
+bot.on("messageCreate", function (msg) {
   if (msg.content.toLowerCase() == "templates") {
     SendTemplateMessage(msg);
   } else if (msg.content.toLowerCase() == "jargon") {
-    msg.reply(JargonMessage());
+    JargonMessage(msg);
   } else if (msg.content.toLowerCase() == "commands") {
     SendCommandMessages(msg);
   } else if (msg.content.toLowerCase() == "add") {

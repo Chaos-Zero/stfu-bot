@@ -1,6 +1,6 @@
 // This is used to get anime and manga details
 const { get } = require("request-promise");
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 function getAnime(message) {
   const args = message.content.substring(2);
@@ -22,18 +22,17 @@ function getAnime(message) {
     get(option).then(body => {
       try {
         let title = body.data[0].attributes.titles.en ? body.data[0].attributes.titles.en : body.data[0].attributes.titles.en_jp;
-        let embed = new MessageEmbed()
+        let embed = new EmbedBuilder()
           .setTitle(title)
-          .setColor("RED")
+          .setColor("0xFF0000")
           .setDescription(body.data[0].attributes.synopsis)
           .setThumbnail(body.data[0].attributes.posterImage.original)
-          .addField("Trailer:", "https://www.youtube.com/watch?v=" + body.data[0].attributes.youtubeVideoId)
-          .addFields({name: "Ratings", value: body.data[0].attributes.averageRating, inline: true})
-          .addFields({name: "Episode Count", value: body.data[0].attributes.episodeCount, inline: true})
+          .addFields([ {name: "Trailer:", value: "https://www.youtube.com/watch?v=" + body.data[0].attributes.youtubeVideoId},
+          {name: "Ratings", value: body.data[0].attributes.averageRating, inline: true},
+          {name: "Episode Count", value: body.data[0].attributes.episodeCount, inline: true}])
           .setImage(body.data[0].attributes.coverImage.large);
         //try it
-
-        message.channel.send(embed);
+        message.channel.send({embeds: [embed], allowedMentions: { repliedUser: false } });
         msg.delete();
       } catch (err) {
         msg.delete();
@@ -63,9 +62,9 @@ function getManga(message) {
     get(option).then(body => {
       try {
         let title = body.data[0].attributes.titles.en ? body.data[0].attributes.titles.en : body.data[0].attributes.titles.en_jp;
-        let embed = new MessageEmbed()
+        let embed = new EmbedBuilder()
           .setTitle(title)
-          .setColor("GREEN")
+          .setColor("0x00FF00")
           .setDescription(body.data[0].attributes.synopsis)
           .setThumbnail(body.data[0].attributes.posterImage.original)
           .addFields({name: "Type:", value: body.data[0].attributes.mangaType.toUpperCase(), inline: true})
@@ -73,8 +72,7 @@ function getManga(message) {
           .addFields({name: "Volumes:", value: body.data[0].attributes.volumeCount, inline: true})
           .setImage(body.data[0].attributes.coverImage.large);
         //try it
-
-        message.channel.send(embed);
+        message.channel.send({embeds: [embed], allowedMentions: { repliedUser: false } });
         msg.delete();
       } catch (err) {
         msg.delete();

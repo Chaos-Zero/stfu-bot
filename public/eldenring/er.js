@@ -1,6 +1,6 @@
 // This is used to get anime and manga details
 const { get } = require("request-promise");
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 // Utility functions
 function jsonConcat(o1, o2) {
@@ -191,10 +191,10 @@ function GetBoss(message, bosses) {
   //Remove extra space and comma
   bossDropText = bossDropText.slice(0, -2);
 
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     //.setAuthor("Boss")
     .setTitle(boss.name)
-    .setColor("BLACK")
+    .setColor("0x000000")
     //.setThumbnail("https://i.redd.it/3e2afpjsi4f61.png")
     .setImage(boss.image)
     .addFields({
@@ -219,9 +219,9 @@ function GetBoss(message, bosses) {
     })
     //.setImage(body.data[0].attributes.coverImage.large)
     //.setFooter("Elden Ring", "https://i.redd.it/3e2afpjsi4f61.png");
-    .setFooter(
-      "danimyuu ♡",
-      "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"
+    .setFooter({
+      text: "danimyuu ♡",
+      iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"}
     );
   //try it
   message.channel.send(embed);
@@ -269,10 +269,10 @@ function GetCreature(message, creatures) {
   //Remove extra space and comma
   creatureDropText = creatureDropText.slice(0, -2);
 
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     //.setAuthor("Boss")
     .setTitle(creature.name)
-    .setColor("GRAY")
+    .setColor("0x808080")
     //.setThumbnail("https://i.redd.it/3e2afpjsi4f61.png")
     .setImage(creature.image)
     .addFields({
@@ -292,9 +292,9 @@ function GetCreature(message, creatures) {
     })
     //.setImage(body.data[0].attributes.coverImage.large)
     //.setFooter("Elden Ring", "https://i.redd.it/3e2afpjsi4f61.png");
-    .setFooter(
-      "danimyuu ♡",
-      "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"
+    .setFooter({
+      text: "danimyuu ♡",
+      iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"}
     );
   //try it
   message.channel.send(embed);
@@ -329,10 +329,10 @@ function GetAsh(message, ashes) {
     ? (bio = ash.description)
     : (bio = "There is no recorded description of this Ash of War.");
 
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     //.setAuthor("Boss")
     .setTitle(ash.name)
-    .setColor("GOLD")
+    .setColor("0xFFD700")
     .setThumbnail(GetIconImage(ash.affinity, affinityList))
     .setImage(ash.image)
     .addFields({
@@ -352,9 +352,9 @@ function GetAsh(message, ashes) {
     })
     //.setImage(body.data[0].attributes.coverImage.large)
     //.setFooter("Elden Ring", "https://i.redd.it/3e2afpjsi4f61.png");
-    .setFooter(
-      "danimyuu ♡",
-      "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"
+    .setFooter({
+      text: "danimyuu ♡",
+      iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"}
     );
   //try it
   message.channel.send(embed);
@@ -381,10 +381,10 @@ function GetNpc(message, npcs) {
     return message.channel.send("I'm sorry, but I don't recognise this NPC.");
   }
 
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     //.setAuthor("Boss")
     .setTitle(npc.name)
-    .setColor("PURPLE")
+    .setColor("0xA020F0")
     //.setThumbnail("https://i.redd.it/3e2afpjsi4f61.png")
     .setImage(npc.image)
     .addFields({
@@ -404,9 +404,9 @@ function GetNpc(message, npcs) {
     })
     //.setImage(body.data[0].attributes.coverImage.large)
     //.setFooter("Elden Ring", "https://i.redd.it/3e2afpjsi4f61.png");
-    .setFooter(
-      "danimyuu ♡",
-      "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"
+    .setFooter({
+      text: "danimyuu ♡",
+      iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"}
     );
   //try it
   message.channel.send(embed);
@@ -440,10 +440,10 @@ function GetSpirit(message, spirits) {
     ? (bio = spirit.description)
     : (bio = "There is no recorded description of this spirit.");
 
-  let embed = new MessageEmbed()
+  let embed = new EmbedBuilder()
     //.setAuthor("Boss")
     .setTitle(spirit.name)
-    .setColor("WHITE")
+    .setColor("0xFFFFFF")
     .setImage(spirit.image)
     .addFields({
       name: "Effect",
@@ -467,9 +467,9 @@ function GetSpirit(message, spirits) {
     })
     //.setImage(body.data[0].attributes.coverImage.large)
     //.setFooter("Elden Ring", "https://i.redd.it/3e2afpjsi4f61.png");
-    .setFooter(
-      "danimyuu ♡",
-      "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"
+    .setFooter({
+      text: "danimyuu ♡",
+      iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"}
     );
   //try it
   message.channel.send(embed);
@@ -497,10 +497,10 @@ function GetWeapon(message) {
     get(option).then((weaponData) => {
       try {
         let weapon = weaponData.data[0];
-        let embed = new MessageEmbed()
+        let embed = new EmbedBuilder()
           //.setAuthor("Boss")
           .setTitle(weapon.name)
-          .setColor("RED")
+          .setColor("0xFF0000")
           .setThumbnail(GetIconImage(weapon.category, weaponList))
           //.setThumbnail("https://i.redd.it/3e2afpjsi4f61.png")
           .setImage(weapon.image)
@@ -622,9 +622,9 @@ function GetWeapon(message) {
           })
           //.setImage(body.data[0].attributes.coverImage.large)
           //.setFooter("Elden Ring", "https://i.redd.it/3e2afpjsi4f61.png");
-          .setFooter(
-            "danimyuu ♡",
-            "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"
+          .setFooter({
+            text: "danimyuu ♡",
+            iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"}
           );
         message.channel.send(embed);
         msg.delete();
