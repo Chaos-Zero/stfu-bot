@@ -13,6 +13,21 @@ const testMix =
   '<div class="pics"><a href="/playpokemon/2022/worldchampionships.shtml"><img src="/worlds2022motif.jpg" alt="Pokémon World Championships " width="300" loading="lazy" /></a></div> <div class="subcat" ><h3>In The Pokémon Department</h3> <p class="title">Pokémon World Championships - Exclusive Merchandise Reveal</p> <p>The Pokémon Company International has given us the global exclusive reveal of a pair of merchandise that can be exclusively purchased at the Pokémon Center Pop-up Store at the <a href="/playpokemon/2022/worldchampionships.shtml">Pokémon World Championships</a> next week from August 17th through 21st in the ExCeL in London, United Kingdom.<br /> This merchandise is the much coveted Coin, Damage Counters & VSTAR Marker Set, with two variations being available in the store. The Coin, Damage Counters & VSTAR Marker Set  - Main Look (London WC22) and the Coin, Damage Counters & VSTAR Marker Set  - City (London WC22) which offer a different case and different coins with a different look<br /> The opening time of Pokémon Center are as follows, with entry being through a virtual queue system at the venue<br /> Wednesday 17th August: 12 pm to 7 pm<br /> Thursday 18th – Saturday 20th August: 8 am to 8 pm<br /> Sunday 21st August: 8 am to 4 pm <table align="center" class="dextab"> <tr > <td class="fooevo">Coin, Damage Counters & VSTAR Marker Set  - Main Look<br />Case</td><td class="fooevo">Coin, Damage Counters & VSTAR Marker Set  - Main Look<br />Dice & Coin</td></tr> <tr> <td class="cen"><a href="/playpokemon/2022/coinsetmain.jpg" rel="lightbox[ranger3]"><img src="/playpokemon/2022/coinsetmainth.jpg" width="250" loading="lazy" /></a></td><td class="cen"><a href="/playpokemon/2022/coinsetmain2.jpg" rel="lightbox[ranger3]"><img src="/playpokemon/2022/coinsetmain2th.jpg" height="250" loading="lazy" /></a></td> </tr> <tr >  <td class="fooevo">Coin, Damage Counters & VSTAR Marker Set  - City<br />Case</td><td class="fooevo">Coin, Damage Counters & VSTAR Marker Set  - City<br />Dice & Coin</td></tr> <tr><td class="cen"><a href="/playpokemon/2022/coinsetcity.jpg" rel="lightbox[ranger3]"><img src="/playpokemon/2022/coinsetcityth.jpg" width="250" loading="lazy" /></a></td><td class="cen"><a href="/playpokemon/2022/coinsetcity2.jpg" rel="lightbox[ranger3]"><img src="/playpokemon/2022/coinsetcity2th.jpg" height="250" loading="lazy" /></a></td> </tr> </table> </p></div>' +
   '<div class="pics"><a href="/cafemix/events.shtml"><img src="/cafemix/machokehiker.jpg" alt="Pokémon Café ReMix" width="300" loading="lazy" /></a></div><div class="subcat"><h3>In The Games Department</h3><p class="title">Pokémon Café ReMix</p><p>A Pokémon Café ReMix login bonus event has begun. This gives you special rewards every day totalling up to 21,000 Golden Acorns while, on Day 5, will give you the special Hiker Outfit for <a href="/cafemix/pokemon/machoke.shtml">Machoke</a>. It  runs until September 1st</p></div> </div> <!-- end_news -->';
 
+  const embedColours = {
+    "Games": "0x002eff", //Dark Blue
+    "Pokémon of the Week": "0x98f598", //Light Green
+    "Pokemon of the Week": "0x98f598", //Light Green
+    "Anime": "0xf39c12", // Orange
+    "Animé": "0xf39c12", // Orange
+    "Pokémon": "0x00ace6", //Light Blue
+    "Pokemon": "0x00ace6", //Light Blue
+    "TCG": "0xf9e79f", // Gold
+    "Trading Card": "0xf9e79f", // Gold
+    "Miscellaneous": "0xd7dbdd", //Silver
+    "Misc": "0xd7dbdd", //Silver
+  }
+  const defaultEmbedColour = "0xFFFFFF"
+
 function SendSerebiiNews(message, rawHtml) {
   var latestpost = GetLatestPost(rawHtml);
   //var postEntries = GetSplitPosts(latestpost);
@@ -97,7 +112,7 @@ function CreatePostEmbeds(postData) {
   for (var i = 0; i < postData.length; i++) {
     var message = new Discord.EmbedBuilder()
       .setTitle(postData[i].title)
-      .setColor("0x00ace6")
+      .setColor(GetEmbedColur(postData[i].department))
       .setAuthor({
         name: postData[i].department,
         iconURL: "https://serebii.net/anime/pokemon/251.gif",
@@ -132,7 +147,7 @@ function CreatePostEmbeds(postData) {
           let embed = new Discord.EmbedBuilder()
             .setTitle(postData[i].title + " preview:")
             .setURL("https://serebii.net/") //);
-            .setColor("0x00ace6")
+            .setColor(GetEmbedColur(postData[i].department))
             .setImage(postData[i].pictures[j]);
           embedsPics.push(embed);
         } else {
@@ -330,4 +345,13 @@ function GetPictureLinks(text) {
     console.log("Nae Youtube Video or images");
     return [text, imageLinks];
   }
+}
+
+function GetEmbedColur(department){
+  for (var key in embedColours) {
+    if (department.includes(key)) {
+        return embedColours[key];
+    }
+    else return defaultEmbedColour;
+}
 }
