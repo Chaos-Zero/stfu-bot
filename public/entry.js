@@ -171,7 +171,7 @@ async function CheckForCommand(message, channel, bot) {
         //GetGenshinCharacter(message, String(argument[2]));
         break;
       case "jargon":
-        message.author.send(JargonMessage());
+        message.author.send({embeds: [JargonMessage()]});
         DeletePinsirCommand(message);
         break;
       case "commands":
