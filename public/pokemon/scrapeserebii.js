@@ -14,17 +14,17 @@ const testMix =
   '<div class="pics"><a href="/cafemix/events.shtml"><img src="/cafemix/machokehiker.jpg" alt="Pokémon Café ReMix" width="300" loading="lazy" /></a></div><div class="subcat"><h3>In The Games Department</h3><p class="title">Pokémon Café ReMix</p><p>A Pokémon Café ReMix login bonus event has begun. This gives you special rewards every day totalling up to 21,000 Golden Acorns while, on Day 5, will give you the special Hiker Outfit for <a href="/cafemix/pokemon/machoke.shtml">Machoke</a>. It  runs until September 1st</p></div> </div> <!-- end_news -->';
 
   const embedColours = {
-    "Games": "0x002eff", //Dark Blue
-    "Pokémon of the Week": "0x98f598", //Light Green
-    "Pokemon of the Week": "0x98f598", //Light Green
-    "Anime": "0xf39c12", // Orange
-    "Animé": "0xf39c12", // Orange
-    "Pokémon": "0x00ace6", //Light Blue
-    "Pokemon": "0x00ace6", //Light Blue
-    "TCG": "0xf9e79f", // Gold
-    "Trading Card": "0xf9e79f", // Gold
-    "Miscellaneous": "0xd7dbdd", //Silver
-    "Misc": "0xd7dbdd", //Silver
+    "Games": "0x206694", //Dark Blue
+    "Pokémon of the Week": "0xF1C40F", // Gold
+    "Pokemon of the Week": "0xF1C40F", // Gold
+    "Anime": "0x11806A", //Aqua
+    "Animé": "0x11806A", //Aqua
+    "Pokémon": "0x992D22", // Dark Red
+    "Pokemon": "0x992D22", // Dark Red
+    "TCG": "0x7289DA", // Blurple
+    "Trading Card": "0x7289DA", // Blurple
+    "Miscellaneous": "0x34495E", //Navy
+    "Misc": "0x34495E", // Navy
   }
   const defaultEmbedColour = "0xFFFFFF"
 
