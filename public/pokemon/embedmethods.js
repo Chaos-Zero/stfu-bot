@@ -45,7 +45,7 @@ function PokemonNumberMessage(message, bot) {
 
         var embed = new Discord.EmbedBuilder()
           .setAuthor({name: "Who's that P̸̡̨̢̡̧̛̛̣̼͈͍̟͉̳̖͖̱͎̲͔̱̻̦̙̺̞̩̬̫̫̭̥̤͓̖̤̞͓̦͙̱̻̼̖̗͈̣̩̪͐̓̈́̓͋̔̔̄̌̀͗͋͒̌̍̉͋͛̌̊̐͛̈́̽͆̆̽̂̽͐̾͂̂̈́̃̐̾̐͝͝ͅơ̵̢̨̧̨̯̝̘̩̲͚̤̭̩͇̰͕̹̫̟̭͖̤̲̙͇̞̊́͐̂ķ̵̢̡̢͉͕͖̲̜̖̦̭̻̹̯͔̬̟͇̮̞͕͖͇̪̙̰͙̠͚̖̲̗̮̟͔̻̬̥͚̙̘̽̃̉͊̽̒̅̈́͑̓̾͒̌͋̅̈͌͆͆̊̐͌̓̃͊̉̀̀̃̏͗̌̈̊̇͘͘̕̕͜͜͜͝͠ͅę̴̛̣͚̲̭̯̣͖͓̟̠̩͕̘͈̱͇̹͉̹̯́̌̋̓͌̋̽̃̂̎̅̇̀́̇̏̚̚̕͜͝ͅͅm̷̢̢̨̛̭̺͕̣͈̘̮̖̪̜͍̤̟̲̥̪̰̤̣̰̰͉̳̼̅̏͒͛̽̄̋̈́͋̑̇̌̇̓̏̿̎͗̀̌͂̂̏̀̏̍̊̈́͊͂̅̈̅ͅò̶̧̨̨͕̺̝͎̯̜̤̯̜̹̞͇̤͕͉̪̣̭͍͔̦̝̼̺̱̊̓̓̈́̈̌̐́̐͂̄͐̾͌̅̈́̉͒͂̇̀̽͋̏̾̿͋̊̑͒͌̚͘̚͘̚͜͝͝n̶̲̹̗̼͉̣͈͖̭̬͈͓̰̩̼̠̞͙̤͕̠̗͈̹͍̤̺̰͓̺̣̈̚ͅͅͅ?"})
-          .setColor(0xff0000)
+          .setColor("0xff0000")
           //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
           .addFields({
             name:
@@ -81,7 +81,7 @@ function PokemonNumberMessage(message, bot) {
     if (isNaN(pokemon)) {
       var embed = new Discord.EmbedBuilder()
         .setAuthor({name: "Which number is that Pokémon?"})
-        .setColor(0xff0000)
+        .setColor("0xff0000")
         //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
         .addFields({
           name:
@@ -109,7 +109,7 @@ function PokemonNumberMessage(message, bot) {
 
       var embed = new Discord.EmbedBuilder()
         .setAuthor({name: "Who's that Pokémon?"})
-        .setColor(0xff0000)
+        .setColor("0xff0000")
         //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
         .addFields({
           name:
@@ -168,7 +168,7 @@ function BalltismMessage(message, bot) {
 
         var embed = new Discord.EmbedBuilder()
           .setAuthor({name: "Who's that P̸̡̨̢̡̧̛̛̣̼͈͍̟͉̳̖͖̱͎̲͔̱̻̦̙̺̞̩̬̫̫̭̥̤͓̖̤̞͓̦͙̱̻̼̖̗͈̣̩̪͐̓̈́̓͋̔̔̄̌̀͗͋͒̌̍̉͋͛̌̊̐͛̈́̽͆̆̽̂̽͐̾͂̂̈́̃̐̾̐͝͝ͅơ̵̢̨̧̨̯̝̘̩̲͚̤̭̩͇̰͕̹̫̟̭͖̤̲̙͇̞̊́͐̂ķ̵̢̡̢͉͕͖̲̜̖̦̭̻̹̯͔̬̟͇̮̞͕͖͇̪̙̰͙̠͚̖̲̗̮̟͔̻̬̥͚̙̘̽̃̉͊̽̒̅̈́͑̓̾͒̌͋̅̈͌͆͆̊̐͌̓̃͊̉̀̀̃̏͗̌̈̊̇͘͘̕̕͜͜͜͝͠ͅę̴̛̣͚̲̭̯̣͖͓̟̠̩͕̘͈̱͇̹͉̹̯́̌̋̓͌̋̽̃̂̎̅̇̀́̇̏̚̚̕͜͝ͅͅm̷̢̢̨̛̭̺͕̣͈̘̮̖̪̜͍̤̟̲̥̪̰̤̣̰̰͉̳̼̅̏͒͛̽̄̋̈́͋̑̇̌̇̓̏̿̎͗̀̌͂̂̏̀̏̍̊̈́͊͂̅̈̅ͅò̶̧̨̨͕̺̝͎̯̜̤̯̜̹̞͇̤͕͉̪̣̭͍͔̦̝̼̺̱̊̓̓̈́̈̌̐́̐͂̄͐̾͌̅̈́̉͒͂̇̀̽͋̏̾̿͋̊̑͒͌̚͘̚͘̚͜͝͝n̶̲̹̗̼͉̣͈͖̭̬͈͓̰̩̼̠̞͙̤͕̠̗͈̹͍̤̺̰͓̺̣̈̚ͅͅͅ?"})
-          .setColor(0xff0000)
+          .setColor("0xff0000")
           //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
           .addFields({
             name:
@@ -281,7 +281,7 @@ function threeBallEmbed(pokeGif, pokeIndex, pokemonEntry, ballImg, region) {
       name: "Balltism Suggestion",
       iconURL:"https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2FBalltism%20icon.png?v=1605530606838"
 })
-    .setColor(0xffff00)
+    .setColor("0xffff00")
     //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
     .setImage(
       "https://raw.githubusercontent.com/caquillo07/rotom-b-data/master/sprites/pokemon/shiny/" +
@@ -323,7 +323,7 @@ function twoBallEmbed(pokeGif, pokeIndex, pokemonEntry, ballImg, region) {
       name: "Balltism Suggestion",
       iconURL:"https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2FBalltism%20icon.png?v=1605530606838" }
     )
-    .setColor(0xffff00)
+    .setColor("0xffff00")
     //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
     .setImage(
       "https://raw.githubusercontent.com/caquillo07/rotom-b-data/master/sprites/pokemon/shiny/" +
@@ -358,7 +358,7 @@ function singleBallEmbed(pokeGif, pokeIndex, pokemonEntry, ballImg, region) {
       name: "Balltism Suggestion",
       iconURL:"https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2FBalltism%20icon.png?v=1605530606838"}
     )
-    .setColor(0xffff00)
+    .setColor("0xffff00")
     //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
     .setImage(
       "https://raw.githubusercontent.com/caquillo07/rotom-b-data/master/sprites/pokemon/shiny/" +

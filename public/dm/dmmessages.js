@@ -16,13 +16,13 @@ function CreateDmMessage(message, isHelp) {
     title = "PINsir-bot: Here to tell you to read the pinned messages!";
     thumbNail =
       "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FPinsir%20Bot.png?v=1609471160411";
-    colour = 0xb33c00;
+    colour = "0xb33c00";
     description = help;
   } else {
     title = "Please Check the pinned messages!";
     thumbNail =
       "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2Fgiphy.gif?v=1610319224206";
-    colour = 0xff0000;
+    colour = "0xff0000";
     description = caught;
   }
 
@@ -79,7 +79,7 @@ function SendCommandMessages(message) {
   //message.author.send(
   //  new Discord.EmbedBuilder()
   //    .setTitle("Rosalina")
-  //    .setColor(0x191970)
+  //    .setColor("0x191970")
   //    .setThumbnail(
   //      "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2F42b9bc52-3178-4fd3-b583-b4493de615a1.image.png?v=1605741094586"
   //    )
@@ -126,7 +126,7 @@ function SendCommandMessages(message) {
   //message.author.send(
   //  new Discord.EmbedBuilder()
   //    .setTitle("Alcremie-B")
-  //    .setColor(0xe6e6fa)
+  //    .setColor("0xe6e6fa")
   //    .setThumbnail(
   //      "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2F60bf608c-215d-489d-ac98-2a3829aed0e8.image.png?v=1605741062540"
   //    )
@@ -198,7 +198,7 @@ function SendCommandMessages(message) {
   //message.author.send(
   //  new Discord.EmbedBuilder()
   //    .setTitle("Gengar-Bot")
-  //    .setColor(0x4b0082)
+  //    .setColor("0x4b0082")
   //    .setThumbnail(
   //      "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2F74f8bae7-a03b-4b37-8eb2-f1af0ab95e4b.image.png?v=1605741212631"
   //    )
@@ -220,7 +220,7 @@ function SendCommandMessages(message) {
   message.author.send(
     new Discord.EmbedBuilder()
       .setTitle("PINsir-bot")
-      .setColor(0xe69500)
+      .setColor("0xe69500")
       .setThumbnail(
         "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FPinsir%20Bot.png?v=1609471160411"
       )
@@ -233,7 +233,7 @@ function SendCommandMessages(message) {
   message.author.send(
     new Discord.EmbedBuilder()
       .setTitle("Base Commands")
-      .setColor(0x005ce6)
+      .setColor("0x005ce6")
       .setThumbnail(
         "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FCommands.png?v=1609715165717"
       )
@@ -265,7 +265,7 @@ function SendCommandMessages(message) {
     message.author.send(
     new Discord.EmbedBuilder()
       .setTitle("Gaming Commands")
-      .setColor(0xcc3300)
+      .setColor("0xcc3300")
       .setThumbnail(
         "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FmlgBot.png?v=1611365650964"
       )
@@ -303,7 +303,7 @@ function SendCommandMessages(message) {
   message.author.send(
     new Discord.EmbedBuilder()
       .setTitle("Pokémon Commands")
-      .setColor(0xffd700)
+      .setColor("0xffd700")
       .setThumbnail(
         "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FPinsir%20Bot-Raid.png?v=1609715166741"
       )
@@ -483,7 +483,7 @@ function SendCommandMessages(message) {
   message.author.send(
     new Discord.EmbedBuilder()
       .setTitle("Dank Commands")
-      .setColor(0x00e673)
+      .setColor("0x00e673")
       .setThumbnail(
         "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FdealMeatball.png?v=1611365638977"
       )
@@ -630,46 +630,46 @@ function SendTemplateMessage(message) {
   var template;
   if (argument[2]) {
     if (argument[2] == "raid") {
-      message.author.send(
+      message.author.send({embeds: [
         CreateHostingTemplates(
           "Raid Template",
-          0x800000,
+          "0x800000",
           "https://cdn.glitch.com/439fa567-8e83-4386-95a3-65195e84f533%2FTemplate-Raid.png?v=1605879409442",
           hostingTemplate,
           "hosting"
         )
-      );
+      ], allowedMentions: { repliedUser: false } });
     } else if (argument[2] == "giveaway") {
-      message.author.send(
+      message.author.send({embeds: [
         CreateHostingTemplates(
           "Giveaway Template",
-          0xdacec1,
+          "0xdacec1",
           "https://cdn.glitch.com/439fa567-8e83-4386-95a3-65195e84f533%2FTemplate-Giveaway.png?v=1605879409176",
           giveawayTemplate,
           "live giveaway"
         )
-      );
+      ], allowedMentions: { repliedUser: false } });
     }
   } else {
-    message.author.send(
+    message.author.send({embeds: [
       CreateHostingTemplates(
         "Raid Template",
-        0x800000,
+        "0x800000",
         "https://cdn.glitch.com/439fa567-8e83-4386-95a3-65195e84f533%2FTemplate-Raid.png?v=1605879409442",
         hostingTemplate,
         "hosting"
       )
-    );
-    message.author.send(
+    ], allowedMentions: { repliedUser: false } });
+
+    message.author.send({embeds: [
       CreateHostingTemplates(
         "Giveaway Template",
-        0xdacec1,
+        "0xdacec1",
         "https://cdn.glitch.com/439fa567-8e83-4386-95a3-65195e84f533%2FTemplate-Giveaway.png?v=1605879409176",
         giveawayTemplate,
         "live giveaway"
       )
-    );
-    return;
+    ], allowedMentions: { repliedUser: false } });
   }
 }
 

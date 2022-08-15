@@ -176,7 +176,7 @@ async function ChangeId(db, message) {
     //if (!foundUser) {
     var Embed = new Discord.EmbedBuilder()
       .setTitle("Add Game Credentials")
-      .setColor(0xffffff)
+      .setColor("0xffffff")
       .setThumbnail(
         "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FmlgBotSeat.png?v=1611365651832"
       )
@@ -662,7 +662,7 @@ async function RemoveId(db, message) {
     //if (!foundUser) {
     var Embed = new Discord.EmbedBuilder()
       .setTitle("Remove Game Credentials")
-      .setColor(0x8c8c8c)
+      .setColor("0x8c8c8c")
       .setThumbnail(
         "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FmlgBotSeat.png?v=1611365651832"
       )
@@ -836,7 +836,7 @@ function CreateGameIdEmbedDetails(user, discordUser, message) {
   let fields = 0;
   let embed = new Discord.EmbedBuilder()
     .setTitle(user.username + "'s Game Credentials")
-    .setColor(0xffd700)
+    .setColor("0xffd700")
     //  .setTitle(`${title1}`)
     //.setDescription("Blah blah")
     //.setAuthor(user.username + "'s Game Credentials")

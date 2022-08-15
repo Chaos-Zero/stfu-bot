@@ -93,7 +93,7 @@ function HostingUpMessage(db, message) {
         ? raidCode
         : "No code needed!";
     var embed = new Discord.EmbedBuilder()
-      .setColor(0xffd700)
+      .setColor("0xffd700")
       .setAuthor({ name: username + " is hosting!", iconURL:message.author.displayAvatarURL()})
       //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
       .addFields({
@@ -174,7 +174,7 @@ function rehost(db, message) {
 
 function CreateBasicHostMessage(username) {
   var embed = new Discord.EmbedBuilder()
-    .setColor(0xffd700)
+    .setColor("0xffd700")
     .setAuthor({name: username + " is hosting!"})
     .setImage(
       "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2Fclassic_pinsirbot.png?v=1597703026332"

@@ -91,7 +91,7 @@ function CreatePostEmbeds(postData) {
   for (var i = 0; i < postData.length; i++) {
     var message = new Discord.EmbedBuilder()
       .setTitle(postData[i].title)
-      .setColor(0x00ace6)
+      .setColor("0x00ace6")
       .setAuthor({
         name: postData[i].department,
         iconURL: "https://serebii.net/anime/pokemon/251.gif",

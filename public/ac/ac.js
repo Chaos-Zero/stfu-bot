@@ -353,7 +353,7 @@ async function CreateItemEmbed(
       : "Item available from AC Ver." + item[itemCount]["version"];
   let embed = new EmbedBuilder()
     .setTitle(title)
-    .setColor(0xdaa520)
+    .setColor("0xdaa520")
     .setThumbnail(item[itemCount]["image_uri"])
     .setFooter({
       text: footerText,
@@ -629,7 +629,7 @@ function GetBug(message, bugs) {
   );
   let embed = new EmbedBuilder()
     .setTitle(title)
-    .setColor(0x964b00)
+    .setColor("0x964b00")
     .setThumbnail(bug["image_uri"])
     .addFields({
       name: "Location",
@@ -726,14 +726,14 @@ function GetFish(message, fishes) {
       value: fish["speed"],
       inline: true
     });
-    embed.setColor(0x006994);
+    embed.setColor("0x006994");
   } else if (fish["availability"]["location"]) {
     embed.addFields({
       name: "Location",
       value: fish["availability"]["location"],
       inline: true
     });
-    embed.setColor(0xadd8e6);
+    embed.setColor("0xadd8e6");
   }
   embed.addFields({
     name: "Price",
@@ -831,7 +831,7 @@ function GetFossil(message, fossils) {
   );
   let embed = new EmbedBuilder()
     .setTitle(title)
-    .setColor(0x964b00)
+    .setColor("0x964b00")
     .setThumbnail(fossil["image_uri"])
     .addFields({
       name: "Price",
@@ -877,7 +877,7 @@ function GetArt(message, arts) {
   );
   let embed = new EmbedBuilder()
     .setTitle(title)
-    .setColor(0xdaa520)
+    .setColor("0xdaa520")
     .setThumbnail(art["image_uri"])
     .addFields({
       name: "Buy Price",

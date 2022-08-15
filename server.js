@@ -13,7 +13,7 @@ const app = express();
 //Set up bot
 const bot = CreateBot();
 FetchSerebii();
-//SetAcEntries();
+SetAcEntries();
 //SetErEntries();
 
 var count = 10;
