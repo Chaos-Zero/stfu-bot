@@ -239,7 +239,7 @@ async function ChangeId(db, message) {
 
     const filter = m => m.author.id === message.author.id;
     dmchannel
-      .awaitMessages(filter, { max: 1, time: 30000, errors: ["time"] })
+      .awaitMessages({filter,  max: 1, time: 30000, errors: ["time"] })
       .then(collected => {
         switch (String(collected.first().content.toLowerCase())) {
           case "1":
@@ -249,7 +249,7 @@ async function ChangeId(db, message) {
               .send("Please enter your Switch Username:")
               .then(
                 dmchannel
-                  .awaitMessages(filter, {
+                  .awaitMessages({filter, 
                     max: 1,
                     time: 30000,
                     errors: ["time"]
@@ -263,7 +263,7 @@ async function ChangeId(db, message) {
                       )
                       .then(
                         dmchannel
-                          .awaitMessages(filter, {
+                          .awaitMessages({filter, 
                             max: 1,
                             time: 30000,
                             errors: ["time"]
@@ -316,7 +316,7 @@ async function ChangeId(db, message) {
               .send("Please enter your PSN Username:")
               .then(
                 dmchannel
-                  .awaitMessages(filter, {
+                  .awaitMessages({filter,
                     max: 1,
                     time: 30000,
                     errors: ["time"]
@@ -355,7 +355,7 @@ async function ChangeId(db, message) {
               .send("Please enter your Xbox Live Username:")
               .then(
                 dmchannel
-                  .awaitMessages(filter, {
+                  .awaitMessages({filter,
                     max: 1,
                     time: 30000,
                     errors: ["time"]
@@ -394,7 +394,7 @@ async function ChangeId(db, message) {
               .send("Please enter your Steam Username:")
               .then(
                 dmchannel
-                  .awaitMessages(filter, {
+                  .awaitMessages({filter,
                     max: 1,
                     time: 30000,
                     errors: ["time"]
@@ -404,7 +404,7 @@ async function ChangeId(db, message) {
 
                     dmchannel.send("Please enter your Steam ID:").then(
                       dmchannel
-                        .awaitMessages(filter, {
+                        .awaitMessages({filter,
                           max: 1,
                           time: 30000,
                           errors: ["time"]
@@ -451,7 +451,7 @@ async function ChangeId(db, message) {
               .send("Please enter your Epic Username:")
               .then(
                 dmchannel
-                  .awaitMessages(filter, {
+                  .awaitMessages({filter,
                     max: 1,
                     time: 30000,
                     errors: ["time"]
@@ -492,7 +492,7 @@ async function ChangeId(db, message) {
               )
               .then(
                 dmchannel
-                  .awaitMessages(filter, {
+                  .awaitMessages({filter,
                     max: 1,
                     time: 30000,
                     errors: ["time"]
@@ -531,7 +531,7 @@ async function ChangeId(db, message) {
               .send("Please enter your Origin Username:")
               .then(
                 dmchannel
-                  .awaitMessages(filter, {
+                  .awaitMessages({filter,
                     max: 1,
                     time: 30000,
                     errors: ["time"]
@@ -570,7 +570,7 @@ async function ChangeId(db, message) {
               .send("Please enter your Uplay Username:")
               .then(
                 dmchannel
-                  .awaitMessages(filter, {
+                  .awaitMessages({filter,
                     max: 1,
                     time: 30000,
                     errors: ["time"]
@@ -725,7 +725,7 @@ async function RemoveId(db, message) {
 
     const filter = m => m.author.id === message.author.id;
     dmchannel
-      .awaitMessages(filter, { max: 1, time: 30000, errors: ["time"] })
+      .awaitMessages({filter,  max: 1, time: 30000, errors: ["time"] })
       .then(collected => {
         switch (String(collected.first().content.toLowerCase())) {
           case "1":
