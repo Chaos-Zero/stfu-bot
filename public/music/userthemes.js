@@ -1,5 +1,6 @@
 const { Client, RichEmbed } = require("discord.js");
 const Discord = require("discord.js");
+import { joinVoiceChannel } from '@discordjs/voice'
 const fs = require("fs");
 const ytdl = require("ytdl-core");
 
@@ -197,8 +198,7 @@ async function SendSound(db, message) {
     .catch(err => console.error(err));
 
   var voiceChannel = GetChannelByName(message, "Lobby");
-  voiceChannel
-    .join()
+    joinVoiceChannel(voiceChannel, message.guildId, message.guild.voiceAdapterCreator)
     .then(connection => {
       const dispatcher = connection.play(
         ytdl(

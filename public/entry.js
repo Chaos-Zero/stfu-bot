@@ -61,12 +61,13 @@ var stringFound = false;
 function CreateBot() {
   const intents = [
     //'NON_PRIVILEGED', // include all non-privileged intents, would be better to specify which ones you actually need
-    GatewayIntentBits.GuildMembers, // lets you request guild members (i.e. fixes the issue)
     GatewayIntentBits.Guilds,
-    // GatewayIntentBits.DirectMessageReactions,
+    GatewayIntentBits.GuildMembers, // lets you request guild members (i.e. fixes the issue)
     GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMessageReactions,
     GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.DirectMessageReactions,
+    GatewayIntentBits.MessageContent,
     // GatewayIntentBits.GuildPresences,
     GatewayIntentBits.GuildEmojisAndStickers,
   ];
