@@ -188,26 +188,26 @@ async function CheckForCommand(message, channel, bot) {
         DeletePinsirCommand(message);
         break;
       case "berry":
-        channel.send("", {
-          files: [
-            "https://cdn.glitch.com/c4b320cc-ad43-484e-a884-21d5e1bea6c1%2FBerry%20chart.png?v=1605173644446",
-          ],
+        channel.send({
+          files: [{ 
+            attachment: "https://cdn.glitch.com/c4b320cc-ad43-484e-a884-21d5e1bea6c1%2FBerry%20chart.png?v=1605173644446"
+        }]
         });
         DeletePinsirCommand(message);
         break;
       case "balls":
-        channel.send("", {
-          files: [
-            "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2F250px-Poke_Balls_GL.png?v=1603746616492",
-          ],
+        channel.send({
+          files: [{ 
+            attachment: "https://cdn.glitch.com/59bb141b-c323-4e6e-86e3-ea46f9f062cf%2F250px-Poke_Balls_GL.png?v=1603746616492"
+        }]
         });
         DeletePinsirCommand(message);
         break;
       case "types":
-        channel.send("", {
-          files: [
-            "https://cdn.glitch.com/c4b320cc-ad43-484e-a884-21d5e1bea6c1%2FTypes.png?v=1605177423780",
-          ],
+        channel.send({
+          files: [{ 
+            attachment: "https://cdn.glitch.com/c4b320cc-ad43-484e-a884-21d5e1bea6c1%2FTypes.png?v=1605177423780"
+        }]
         });
         DeletePinsirCommand(message);
         break;
