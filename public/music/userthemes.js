@@ -1,6 +1,6 @@
 const { Client, RichEmbed } = require("discord.js");
 const Discord = require("discord.js");
-import { joinVoiceChannel } from '@discordjs/voice'
+const { joinVoiceChannel } = require('@discordjs/voice')
 const fs = require("fs");
 const ytdl = require("ytdl-core");
 
