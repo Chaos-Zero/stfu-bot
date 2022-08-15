@@ -79,7 +79,7 @@ bot.on("messageCreate", function(msg) {
   if (msg.content.toLowerCase() == "templates") {
     SendTemplateMessage(msg);
   } else if (msg.content.toLowerCase() == "jargon") {
-    msg.reply({embeds: [JargonMessage()], allowedMentions: { repliedUser: false } });
+    JargonMessage(msg);
   } else if (msg.content.toLowerCase() == "commands") {
     SendCommandMessages(msg);
   } else if (msg.content.toLowerCase() == "add") {

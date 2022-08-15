@@ -171,7 +171,7 @@ async function CheckForCommand(message, channel, bot) {
         //GetGenshinCharacter(message, String(argument[2]));
         break;
       case "jargon":
-        message.author.send({embeds: [JargonMessage()]});
+        JargonMessage(message);
         DeletePinsirCommand(message);
         break;
       case "commands":
@@ -212,12 +212,12 @@ async function CheckForCommand(message, channel, bot) {
         DeletePinsirCommand(message);
         break;
       case "terrain":
-        channel.send(TerrainMessage(message));
+        TerrainMessage(message);
         DeletePinsirCommand(message);
         break;
       case "giveaway":
       case "hosting":
-        channel.send(HostingUpMessage(db, message));
+        channel.send({embeds: [ HostingUpMessage(db, message)], allowedMentions: { repliedUser: false } })
         break;
       case "rehost":
         rehost(db, message);

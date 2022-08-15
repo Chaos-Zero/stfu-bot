@@ -5,20 +5,20 @@ function TerrainMessage(message) {
   const argument = message.content.split(" ");
   switch (String(argument[2]).toLowerCase()) {
     case "electric":
-      return ElectricTerrainMessage();
+      message.channel.send({embeds: [ElectricTerrainMessage()], allowedMentions: { repliedUser: false } });
       break;
     case "grass":
     case "grassy":
-      return GrassyTerrainMessage();
+      message.channel.send({embeds: [GrassyTerrainMessage()], allowedMentions: { repliedUser: false } });
       break;
     case "misty":
-      return MistyTerrainMessage();
+      message.channel.send({embeds: [MistyTerrainMessage()], allowedMentions: { repliedUser: false } });
       break;
     case "psychic":
-      return PsychicTerrainMessage();
+      message.channel.send({embeds: [PsychicTerrainMessage()], allowedMentions: { repliedUser: false } });
       break;
     default:
-      return "You must specify one of the following terrains:\n Electric, Grassy, Misty, Psychic.";
+      message.channel.send("You must specify one of the following terrains:\n Electric, Grassy, Misty, Psychic.");
   }
 }
 
