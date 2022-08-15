@@ -68,7 +68,8 @@ function CreateBot() {
     GatewayIntentBits.DirectMessages,
     GatewayIntentBits.DirectMessageReactions,
     GatewayIntentBits.MessageContent,
-    // GatewayIntentBits.GuildPresences,
+    GatewayIntentBits.GuildVoiceStates,
+    GatewayIntentBits.GuildPresences,
     GatewayIntentBits.GuildEmojisAndStickers,
   ];
 
@@ -260,11 +261,6 @@ async function CheckForCommand(message, channel, bot) {
         DeletePinsirCommand(message);
         break;
       case "shame":
-        //channel.send({
-        //  files: [{ 
-        //    attachment: "https://cdn.glitch.com/c4b320cc-ad43-484e-a884-21d5e1bea6c1%2FTypes.png?v=1605177423780"
-        //}]
-        //});
         var name = argument[2] != null ? argument[2] : "FAM";
         if (argument[2].toLowerCase().includes("pinsir")) {
           channel.send({ content:"I HAVE NO SHAME",
@@ -273,15 +269,15 @@ async function CheckForCommand(message, channel, bot) {
             ]
           });
         } else {
-          channel.send( {
-            content: "SHAME ON YOU " +
+          channel.send({
+            content:
+              "SHAME ON YOU " +
               name.toUpperCase() +
               " FOR DOING THAT THING YOU DONE DID!",
-              files: [
-                "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FPinsirShame.png?v=1609715165685",
-              ]
-            }
-          );
+            files: [
+              "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FPinsirShame.png?v=1609715165685",
+            ],
+          });
         }
         DeletePinsirCommand(message);
         break;

@@ -1,8 +1,9 @@
 const { Client, RichEmbed } = require("discord.js");
 const Discord = require("discord.js");
-const { joinVoiceChannel } = require('@discordjs/voice')
+const { joinVoiceChannel, createAudioPlayer, createAudioResource } = require('@discordjs/voice');
 const fs = require("fs");
 const ytdl = require("ytdl-core");
+const DiscordMusicPlayer = require('@discordjs/voice');
 
 eval(fs.readFileSync("./public/database/read.js") + "");
 eval(fs.readFileSync("./public/database/write.js") + "");
@@ -177,7 +178,7 @@ async function SendSound(db, message) {
             .setThumbnail(
               "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FConductor.png?v=1615424184972"
             );
-          m.edit(embed);
+          m.edit({embeds : [embed]});
         }
       });
       collector.on("end", async (reaction, user) => {
@@ -192,38 +193,79 @@ async function SendSound(db, message) {
           .setThumbnail(
             "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FConductor.png?v=1615424184972"
           );
-        m.edit(embed);
+        m.edit({embeds: [embed]});
       });
     })
     .catch(err => console.error(err));
 
-  var voiceChannel = GetChannelByName(message, "Lobby");
-    joinVoiceChannel(voiceChannel, message.guildId, message.guild.voiceAdapterCreator)
-    .then(connection => {
-      const dispatcher = connection.play(
-        ytdl(
-          user.url,
-          {
-            filter: "audio",
-            quality: "highestaudio",
-            highWaterMark: 1 << 25
-          },
-          { volume: 0.15 }
-        )
-      );
-      dispatcher.on("end", end => {
-        voiceChannel.leave();
-      });
-    })
-    .catch(console.error);
+    var voiceChannel = GetChannelByName(message, "Lobby");
+		const stream = ytdl(user.url, { filter: 'audioonly', highWaterMark: 1 << 25 });
+
+		const channel = message.member.voice.channel;
+
+		const player = createAudioPlayer();
+		const resource = createAudioResource(stream);
+
+		const connection = joinVoiceChannel({
+			channelId: voiceChannel.id,
+			guildId: message.guild.id,
+			adapterCreator: message.guild.voiceAdapterCreator, 
+      selfDeaf: false
+		});
+    
+		player.play(resource);
+		connection.subscribe(player);
+
+		player.on(DiscordMusicPlayer.AudioPlayerStatus.Idle, () => {
+			StopSound(message)
+		});
+  
+  
+  
+  
+  
+    //const connection = joinVoiceChannel({channelId:voiceChannel.id, guildId: message.guildId, adapterCreator: message.guild.voiceAdapterCreator, selfDeaf: false})
+    
+    //const stream =  ytdl(user.url, { filter: 'audioonly' });
+    
+		//const player = createAudioPlayer();
+		//const resource = createAudioResource(stream);
+    
+    //player.play(resource);
+		//connection.subscribe(player);
+
+		//player.on(Discord.AudioPlayerStatus.Idle, () => {
+		//	connection.destroy();
+		//});
+  
+  
+  
+    //.then(connection => {
+    //  const dispatcher = connection.play(
+    //    ytdl(
+    //      user.url,
+    //      {
+    //       filter: "audio",
+    //        quality: "highestaudio",
+    //        highWaterMark: 1 << 25
+    //      },
+    //      { volume: 0.15 }
+    //    )
+    //  );
+    //  dispatcher.on("end", end => {
+    //    voiceChannel.leave();
+    //  });
+    //})
+    //.catch(console.error);
 }
 
 function StopSound(message) {
   var voiceChannel = GetChannelByName(message, "Lobby");
-  voiceChannel
-    .join()
-    .then(connection => {
-      voiceChannel.leave();
-    })
-    .catch(console.error);
+  const connection = DiscordMusicPlayer.joinVoiceChannel({
+			channelId: voiceChannel.id,
+			guildId: message.guild.id,
+			adapterCreator: message.guild.voiceAdapterCreator, 
+      selfDeaf: false
+		});
+  connection.destroy();
 }

@@ -537,7 +537,7 @@ function CycleVillager(message, villagers) {
             reaction.emoji.name === "⬅️" ? villagerCount-- : villagerCount++;
           }
           var embed = CreateVillagerEmbed(villagerCount, villagers);
-          m.edit(embed);
+          m.edit({embeds: [embed]});
           //m.react("⬅️");
           //m.react("➡️");
         }
@@ -598,7 +598,7 @@ function GetVillager(message, villagers) {
     //.setImage(body.data[0].attributes.coverImage.large)
     .setFooter({ text: '"' + villager["catch-phrase"] + '"', iconURL:villager["icon_uri"]});
   //try it
-  message.channel.send({embeds: [embed], allowedMentions: { repliedUser: false } });
+  message.channel.send({embeds: [embed]});
   //message.delete();
 }
 
@@ -686,7 +686,7 @@ function GetBug(message, bugs) {
     });
   }
 
-  message.channel.send(embed);
+  message.channel.send({embeds: [embed]});
   //message.delete();
 }
 
@@ -798,7 +798,7 @@ function GetFish(message, fishes) {
     });
   }
 
-  message.channel.send(embed);
+  message.channel.send({embeds: [embed]});
   //message.delete();
 }
 
@@ -844,7 +844,7 @@ function GetFossil(message, fossils) {
       inline: false
     });
 
-  message.channel.send(embed);
+  message.channel.send({embeds: [embed]});
   //message.delete();
 }
 
@@ -907,7 +907,7 @@ function GetArt(message, arts) {
     inline: false
   });
 
-  message.channel.send(embed);
+  message.channel.send({embeds: [embed]});
   //message.delete();
 }
 
@@ -929,7 +929,7 @@ async function GetItem(message, items, hangables) {
 
   if (parseInt(numberOfItems) > 1) {
     message.channel
-      .send(embed[0])
+      .send({embeds: [embed[0]]})
       .then(m => {
         m.react("⬅️");
         m.react("➡️");
@@ -964,13 +964,13 @@ async function GetItem(message, items, hangables) {
               items,
               hangables
             );
-            m.edit(embed[0]);
+            m.edit({embeds: [embed[0]] } );
           }
         });
       })
       .catch(err => console.error(err));
     //message.delete();
   } else {
-    message.channel.send(embed[0]);
+    message.channel.send({embeds: [embed[0]]});
   }
 }

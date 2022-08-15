@@ -19,7 +19,7 @@ SetAcEntries();
 var count = 10;
 
 // Deal with Discord Messages
-bot.on("messageCreate", message => {
+bot.on("messageCreate", (message) => {
   //console.log(message)
   let thisChannel = message.channel;
   CheckForBadWords(message, thisChannel);
@@ -28,7 +28,7 @@ bot.on("messageCreate", message => {
   // Remove auto pin message
   if (message.type === "PINS_ADD") {
     message.delete();
-    GetPinnedMessages(thisChannel).then(result => {
+    GetPinnedMessages(thisChannel).then((result) => {
       console.log("Got PinnedMessages");
       console.log("Writing user " + result[0].author.username);
       SavePinMessage(
