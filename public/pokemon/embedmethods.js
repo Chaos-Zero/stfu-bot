@@ -32,7 +32,7 @@ function PokemonNumberMessage(message, bot) {
   if (pokemon == "") {
     var pinsirMessage =
       "Please a add Pokémon or number to the end of the message " + username;
-    return pinsirMessage;
+    message.channel.send(pinsirMessage);
   } else {
     var pokeIndex = pokemon;
     if (isNaN(pokeIndex)) {
@@ -56,7 +56,8 @@ function PokemonNumberMessage(message, bot) {
           //  .setTitle(`${title1}`)
           //.setDescription("Blah blah")
           .setThumbnail("https://wiki.p-insurgence.com/images/0/09/722.png");
-        return embed;
+        channel.send({embeds: [embed], allowedMentions: { repliedUser: false } })
+          
       } else {
         pokeIndex = pokemonList.indexOf(pokemon.toLowerCase()) + 1;
       }
@@ -67,7 +68,7 @@ function PokemonNumberMessage(message, bot) {
         username +
         ", I do not know this Pokémon. I may have it written down differently.";
 
-      return pinsirMessage;
+      message.channel.send(pinsirMessage);
     }
     var origIndex = pokeIndex;
     region = CheckRegion(origIndex);
@@ -128,8 +129,7 @@ function PokemonNumberMessage(message, bot) {
           "https://www.serebii.net/" + pokemonAddress + "" + pokeIndex + ".png"
         );
     }
-
-    return embed;
+    channel.send({embeds: [embed], allowedMentions: { repliedUser: false } })
   }
 }
 
@@ -155,7 +155,7 @@ function BalltismMessage(message, bot) {
   if (pokemon == "") {
     var pinsirMessage =
       "Please a add Pokémon or number to the end of the message " + username;
-    return pinsirMessage;
+    message.channel.send(pinsirMessage);
   } else {
     var pokeIndex = pokemon;
     if (isNaN(pokeIndex)) {
@@ -179,7 +179,7 @@ function BalltismMessage(message, bot) {
           //  .setTitle(`${title1}`)
           //.setDescription("Blah blah")
           .setThumbnail("https://wiki.p-insurgence.com/images/0/09/722.png");
-        return embed;
+          channel.send({embeds: [embed], allowedMentions: { repliedUser: false } })
       } else {
         pokeIndex = pokemonList.indexOf(pokemon.toLowerCase()) + 1;
       }
@@ -189,7 +189,7 @@ function BalltismMessage(message, bot) {
         "I'm sorry " +
         username +
         ", I do not know this Pokémon. I may have it written down differently.";
-      return pinsirMessage;
+      message.channel.send(pinsirMessage);
     }
 
     var pokeImage =
@@ -199,19 +199,20 @@ function BalltismMessage(message, bot) {
 
     //pokemonCapList[pokeIndex - 1]
     try {
-    return BalltismEmbed(
-      message,
-      balltismEntry,
-      pokemonAddress,
-      pokeIndex,
-      regionIdentity
-    );
+      channel.send({embeds: [ 
+        BalltismEmbed(
+          message,
+          balltismEntry,
+          pokemonAddress,
+          pokeIndex,
+          regionIdentity
+        )], allowedMentions: { repliedUser: false } })
     } catch {
       var pinsirMessage =
         "I'm sorry " +
         username +
         ", this pokemon has not had Balltism entries filled.";
-      return pinsirMessage;
+      message.channel.send(pinsirMessage);
     }
   }
 }

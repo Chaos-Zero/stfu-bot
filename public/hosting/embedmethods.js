@@ -59,7 +59,7 @@ function HostingUpMessage(db, message) {
       RemovePins(message);
       const pinsirMessage = EventEndMessage(message,username)
       DeletePinsirCommand(message);
-      return pinsirMessage;
+      channel.send({embeds: [pinsirMessage], allowedMentions: { repliedUser: false } });
     }
 
     if (isNaN(pokeIndex)) {
@@ -71,9 +71,9 @@ function HostingUpMessage(db, message) {
         username +
         ", I do not know this Pokémon. I may have it written down differently. \nTry using the the Pokémon's National Dex number like '127' for Pinsir.\n You can find the numbers here: https://www.serebii.net/pokedex-swsh/";
       if (argument[1] != "giveaway") {
-        return pinsirMessage;
+        channel.send({embeds: [pinsirMessage], allowedMentions: { repliedUser: false } });
       } else {
-        return "Did you mean to use `$pinsir giveaway end`?.\n Use `$pinsir commands` to see how to use PINsir";
+        message.channel.send("Did you mean to use `$pinsir giveaway end`?.\n Use `$pinsir commands` to see how to use PINsir");
       }
     }
     const pokeIndexNumber = pokeIndex;
@@ -119,9 +119,9 @@ function HostingUpMessage(db, message) {
     SaveHostMessage(db, username, embed);
   }
   if (argument[1] != "giveaway") {
-    return embed;
+    message.channel.send({embeds: [embed], allowedMentions: { repliedUser: false } })
   } else {
-    return "Did you mean to use `$pinsir giveaway end`?.\n Use `$pinsir commands` to see how to use PINsir";
+    message.channel.send("Did you mean to use `$pinsir giveaway end`?.\n Use `$pinsir commands` to see how to use PINsir");
   }
 }
 
@@ -166,9 +166,9 @@ function rehost(db, message) {
     console.log(dbMessage.message);
     var sendingMessage = dbMessage.message;
 
-    message.channel.send(sendingMessage);
+    message.channel.send({embeds: [sendingMessage], allowedMentions: { repliedUser: false } });
   } else {
-    message.channel.send(CreateBasicHostMessage());
+    message.channel.send({embeds: [CreateBasicHostMessage()], allowedMentions: { repliedUser: false } });
   }
 }
 
