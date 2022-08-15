@@ -144,7 +144,7 @@ async function SendSound(db, message) {
 
   var embed = new Discord.EmbedBuilder()
     .setTitle("Playing " + user.username + "'s theme in 🔊Lobby")
-    .setColor("BLUE")
+    .setColor("0x0000FF")
     .setDescription("Use reaction to stop or `$pinsir theme stop`")
     .setThumbnail(discordUser.displayAvatarURL());
 
@@ -168,7 +168,7 @@ async function SendSound(db, message) {
           StopSound(message);
           var embed = new Discord.EmbedBuilder()
             .setTitle("Add your own theme!")
-            .setColor("RED")
+            .setColor("0xFF0000")
             .setDescription(
               "Use `$pinsir theme add [youtube url]`" +
                 "\n\nYou can play your theme using `$pinsir theme play`.\nAdd a user id or ping to play another users theme."
@@ -183,7 +183,7 @@ async function SendSound(db, message) {
         reaction.remove();
         var embed = new Discord.EmbedBuilder()
           .setTitle("Add your own theme!")
-          .setColor("RED")
+          .setColor("0xFF0000")
           .setDescription(
             "Use `$pinsir theme add [youtube url]`" +
               "\n\nYou can play your theme using `$pinsir theme play`.\nAdd a user id or ping to play another users theme."

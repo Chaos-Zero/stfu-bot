@@ -239,7 +239,7 @@ function CreateVillagerEmbed(villagerCount, villagers) {
 
   let embed = new EmbedBuilder()
     .setTitle(villager["name"]["name-USen"])
-    .setColor("GREEN")
+    .setColor("0x00FF00")
     .setThumbnail(villager["image_uri"])
     .addFields({
       name: "Birthday",
@@ -573,7 +573,7 @@ function GetVillager(message, villagers) {
   }
   let embed = new EmbedBuilder()
     .setTitle(villager["name"]["name-USen"])
-    .setColor("GREEN")
+    .setColor("0x00FF00")
     .setThumbnail(villager["image_uri"])
     .addFields({
       name: "Birthday",

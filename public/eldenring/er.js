@@ -194,7 +194,7 @@ function GetBoss(message, bosses) {
   let embed = new EmbedBuilder()
     //.setAuthor("Boss")
     .setTitle(boss.name)
-    .setColor("BLACK")
+    .setColor("0x000000")
     //.setThumbnail("https://i.redd.it/3e2afpjsi4f61.png")
     .setImage(boss.image)
     .addFields({
@@ -272,7 +272,7 @@ function GetCreature(message, creatures) {
   let embed = new EmbedBuilder()
     //.setAuthor("Boss")
     .setTitle(creature.name)
-    .setColor("GRAY")
+    .setColor("0x808080")
     //.setThumbnail("https://i.redd.it/3e2afpjsi4f61.png")
     .setImage(creature.image)
     .addFields({
@@ -332,7 +332,7 @@ function GetAsh(message, ashes) {
   let embed = new EmbedBuilder()
     //.setAuthor("Boss")
     .setTitle(ash.name)
-    .setColor("GOLD")
+    .setColor("0xFFD700")
     .setThumbnail(GetIconImage(ash.affinity, affinityList))
     .setImage(ash.image)
     .addFields({
@@ -384,7 +384,7 @@ function GetNpc(message, npcs) {
   let embed = new EmbedBuilder()
     //.setAuthor("Boss")
     .setTitle(npc.name)
-    .setColor("PURPLE")
+    .setColor("0xA020F0")
     //.setThumbnail("https://i.redd.it/3e2afpjsi4f61.png")
     .setImage(npc.image)
     .addFields({
@@ -443,7 +443,7 @@ function GetSpirit(message, spirits) {
   let embed = new EmbedBuilder()
     //.setAuthor("Boss")
     .setTitle(spirit.name)
-    .setColor("WHITE")
+    .setColor("0xFFFFFF")
     .setImage(spirit.image)
     .addFields({
       name: "Effect",
@@ -500,7 +500,7 @@ function GetWeapon(message) {
         let embed = new EmbedBuilder()
           //.setAuthor("Boss")
           .setTitle(weapon.name)
-          .setColor("RED")
+          .setColor("0xFF0000")
           .setThumbnail(GetIconImage(weapon.category, weaponList))
           //.setThumbnail("https://i.redd.it/3e2afpjsi4f61.png")
           .setImage(weapon.image)

@@ -24,7 +24,7 @@ function getAnime(message) {
         let title = body.data[0].attributes.titles.en ? body.data[0].attributes.titles.en : body.data[0].attributes.titles.en_jp;
         let embed = new EmbedBuilder()
           .setTitle(title)
-          .setColor("RED")
+          .setColor("0xFF0000")
           .setDescription(body.data[0].attributes.synopsis)
           .setThumbnail(body.data[0].attributes.posterImage.original)
           .addFields([ {name: "Trailer:", value: "https://www.youtube.com/watch?v=" + body.data[0].attributes.youtubeVideoId},
@@ -64,7 +64,7 @@ function getManga(message) {
         let title = body.data[0].attributes.titles.en ? body.data[0].attributes.titles.en : body.data[0].attributes.titles.en_jp;
         let embed = new EmbedBuilder()
           .setTitle(title)
-          .setColor("GREEN")
+          .setColor("0x00FF00")
           .setDescription(body.data[0].attributes.synopsis)
           .setThumbnail(body.data[0].attributes.posterImage.original)
           .addFields({name: "Type:", value: body.data[0].attributes.mangaType.toUpperCase(), inline: true})
