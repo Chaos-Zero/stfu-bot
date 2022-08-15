@@ -44,7 +44,7 @@ function CreateDmMessage(message, isHelp) {
 
 // Create DM embeded message
 function CreateDmEmbedMessage(title, colour, thumbNail, description) {
-  var Embed = new Discord.MessageEmbed()
+  var Embed = new Discord.EmbedBuilder()
     .setTitle(title)
     .setColor(colour)
     .setThumbnail(thumbNail)
@@ -77,7 +77,7 @@ function CreateDmEmbedMessage(title, colour, thumbNail, description) {
 // Send Bot commands in DM
 function SendCommandMessages(message) {
   //message.author.send(
-  //  new Discord.MessageEmbed()
+  //  new Discord.EmbedBuilder()
   //    .setTitle("Rosalina")
   //    .setColor(0x191970)
   //    .setThumbnail(
@@ -124,7 +124,7 @@ function SendCommandMessages(message) {
   //);
 
   //message.author.send(
-  //  new Discord.MessageEmbed()
+  //  new Discord.EmbedBuilder()
   //    .setTitle("Alcremie-B")
   //    .setColor(0xe6e6fa)
   //    .setThumbnail(
@@ -196,7 +196,7 @@ function SendCommandMessages(message) {
   //);
 
   //message.author.send(
-  //  new Discord.MessageEmbed()
+  //  new Discord.EmbedBuilder()
   //    .setTitle("Gengar-Bot")
   //    .setColor(0x4b0082)
   //    .setThumbnail(
@@ -218,7 +218,7 @@ function SendCommandMessages(message) {
   //);
 
   message.author.send(
-    new Discord.MessageEmbed()
+    new Discord.EmbedBuilder()
       .setTitle("PINsir-bot")
       .setColor(0xe69500)
       .setThumbnail(
@@ -231,7 +231,7 @@ function SendCommandMessages(message) {
   );
 
   message.author.send(
-    new Discord.MessageEmbed()
+    new Discord.EmbedBuilder()
       .setTitle("Base Commands")
       .setColor(0x005ce6)
       .setThumbnail(
@@ -263,7 +263,7 @@ function SendCommandMessages(message) {
   );
   
     message.author.send(
-    new Discord.MessageEmbed()
+    new Discord.EmbedBuilder()
       .setTitle("Gaming Commands")
       .setColor(0xcc3300)
       .setThumbnail(
@@ -301,7 +301,7 @@ function SendCommandMessages(message) {
   );
 
   message.author.send(
-    new Discord.MessageEmbed()
+    new Discord.EmbedBuilder()
       .setTitle("Pokémon Commands")
       .setColor(0xffd700)
       .setThumbnail(
@@ -481,7 +481,7 @@ function SendCommandMessages(message) {
   );
 
   message.author.send(
-    new Discord.MessageEmbed()
+    new Discord.EmbedBuilder()
       .setTitle("Dank Commands")
       .setColor(0x00e673)
       .setThumbnail(
@@ -674,7 +674,7 @@ function SendTemplateMessage(message) {
 }
 
 function CreateHostingTemplates(title, colour, thumbnail, template, type) {
-  var embed = new Discord.MessageEmbed()
+  var embed = new Discord.EmbedBuilder()
     .setTitle(title)
     .setColor(colour)
     .setThumbnail(thumbnail)

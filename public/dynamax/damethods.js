@@ -283,7 +283,7 @@ async function SendDAHostedByMessage(db, message) {
         "Nobody has a path that leads to **" + pokemon[1] + "** at the time.";
       usernames = "\u200b";
     }
-    var embed = new Discord.MessageEmbed()
+    var embed = new Discord.EmbedBuilder()
       .setColor(0xffd700)
       .setAuthor({
         name: message.author.username + " is looking to battle a " + pokemon[1],
@@ -460,7 +460,7 @@ async function SearchDAPokemon(db, message) {
         "** at the time.";
       usernames = "\u200b";
     }
-    var embed = new Discord.MessageEmbed()
+    var embed = new Discord.EmbedBuilder()
       .setColor(0xffd700)
       .setAuthor({
         name: message.author.username +
@@ -546,7 +546,7 @@ async function PingSearchDAPokemon(db, message) {
           pokemon[1] +
           "** at the time.";
       }
-      var embed = new Discord.MessageEmbed()
+      var embed = new Discord.EmbedBuilder()
         .setColor(0xffd700)
         .setAuthor({
           name: message.author.username +

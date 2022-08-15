@@ -92,7 +92,7 @@ function HostingUpMessage(db, message) {
       /\d/.test(raidCode) && message.content.includes("rc:")
         ? raidCode
         : "No code needed!";
-    var embed = new Discord.MessageEmbed()
+    var embed = new Discord.EmbedBuilder()
       .setColor(0xffd700)
       .setAuthor({ name: username + " is hosting!", iconURL:message.author.displayAvatarURL()})
       //.setDescription("Coming up next: " + pokemonCapList[pokeIndex-1] + "!")
@@ -173,7 +173,7 @@ function rehost(db, message) {
 }
 
 function CreateBasicHostMessage(username) {
-  var embed = new Discord.MessageEmbed()
+  var embed = new Discord.EmbedBuilder()
     .setColor(0xffd700)
     .setAuthor({name: username + " is hosting!"})
     .setImage(

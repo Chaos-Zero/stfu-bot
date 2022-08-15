@@ -174,7 +174,7 @@ async function ChangeId(db, message) {
   // Set a user using Lodash shorthand syntax
   message.author.createDM().then(dmchannel => {
     //if (!foundUser) {
-    var Embed = new Discord.MessageEmbed()
+    var Embed = new Discord.EmbedBuilder()
       .setTitle("Add Game Credentials")
       .setColor(0xffffff)
       .setThumbnail(
@@ -660,7 +660,7 @@ async function RemoveId(db, message) {
   // Set a user using Lodash shorthand syntax
   message.author.createDM().then(dmchannel => {
     //if (!foundUser) {
-    var Embed = new Discord.MessageEmbed()
+    var Embed = new Discord.EmbedBuilder()
       .setTitle("Remove Game Credentials")
       .setColor(0x8c8c8c)
       .setThumbnail(
@@ -834,7 +834,7 @@ function AddEmptyField(fields, embed) {
 
 function CreateGameIdEmbedDetails(user, discordUser, message) {
   let fields = 0;
-  let embed = new Discord.MessageEmbed()
+  let embed = new Discord.EmbedBuilder()
     .setTitle(user.username + "'s Game Credentials")
     .setColor(0xffd700)
     //  .setTitle(`${title1}`)

@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 //const genshin = require("genshin-impact-api");
 
 function CreateGenshinEmbed(character) {
-  return new Discord.MessageEmbed()
+  return new Discord.EmbedBuilder()
     .setTitle("Genshin Impact Bio: " + character.name)
     .setColor(0x00ace6)
     .setThumbnail(character.image)

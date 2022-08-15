@@ -1,6 +1,6 @@
 // This is used to get anime and manga details
 const { get } = require("request-promise");
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 function getAnime(message) {
   const args = message.content.substring(2);
@@ -22,7 +22,7 @@ function getAnime(message) {
     get(option).then(body => {
       try {
         let title = body.data[0].attributes.titles.en ? body.data[0].attributes.titles.en : body.data[0].attributes.titles.en_jp;
-        let embed = new MessageEmbed()
+        let embed = new EmbedBuilder()
           .setTitle(title)
           .setColor("RED")
           .setDescription(body.data[0].attributes.synopsis)
@@ -63,7 +63,7 @@ function getManga(message) {
     get(option).then(body => {
       try {
         let title = body.data[0].attributes.titles.en ? body.data[0].attributes.titles.en : body.data[0].attributes.titles.en_jp;
-        let embed = new MessageEmbed()
+        let embed = new EmbedBuilder()
           .setTitle(title)
           .setColor("GREEN")
           .setDescription(body.data[0].attributes.synopsis)
