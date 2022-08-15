@@ -234,7 +234,7 @@ async function ChangeId(db, message) {
         text: "danimyuu ♡",
         iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"}
       );
-    dmchannel.send(Embed);
+    dmchannel.send(({embeds: [Embed]}));
     //}
 
     const filter = m => m.author.id === message.author.id;
@@ -720,7 +720,7 @@ async function RemoveId(db, message) {
         text: "danimyuu ♡",
         iconURL: "https://cdn.glitch.com/37568bfd-6a1d-4263-868a-c3b4d503a0b1%2FMewditto.png?v=1609471789850"}
       );
-    dmchannel.send(Embed);
+    dmchannel.send(({embeds: [Embed]}));
     //}
 
     const filter = m => m.author.id === message.author.id;
@@ -924,5 +924,5 @@ async function SendGameIdEmbed(user, message) {
   console.log("User id from DB: " + user.id);
   var discordUser = GetUserFromId(message, user.id);
   var embed = CreateGameIdEmbedDetails(user, discordUser, message);
-  message.channel.send(embed);
+  message.channel.send({embeds: [embed]});
 }
