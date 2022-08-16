@@ -112,3 +112,9 @@ app.get("/", (request, response) => {
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
+
+var minutes = 1, the_interval = minutes * 60 * 1000;
+setInterval(function() {
+  console.log("Getting Serebii news");
+  SendSerebiiNews(db, bot, serebiiNewsHtml);
+}, the_interval);

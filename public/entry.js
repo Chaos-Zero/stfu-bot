@@ -244,10 +244,10 @@ async function CheckForCommand(message, channel, bot) {
       case "balltism":
         BalltismMessage(message, bot);
         break;
-      case "testest":
-        //console.log(GetSplitPosts(GetLatestPost(html)));
-        SendSerebiiNews(db, message, serebiiNewsHtml);
-        break;
+      //case "testest":
+      //console.log(GetSplitPosts(GetLatestPost(html)));
+      //  SendSerebiiNews(db, bot, serebiiNewsHtml);
+      //  break;
       //case "da":
       //await channel.send(DynamaxAdventure(db, message));
       //break;

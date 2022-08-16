@@ -29,14 +29,14 @@ const testMix =
   }
   const defaultEmbedColour = "0xFFFFFF"
 
-function SendSerebiiNews(db, bot, rawHtml) {
+function SendSerebiiNews(db, message, rawHtml) {
   var latestpost = GetLatestPost(rawHtml);
   var date = GetPostDate(latestpost);
   var postEntries = GetSplitPosts(latestpost);
   // Test message
   //var postEntries = GetSplitPosts(testMix);
   var discordPosts = CreatePostEmbeds(postEntries);
-  UpdateAndSendDbEmbeds(db, bot, date, discordPosts)
+  UpdateAndSendDbEmbeds(db, message, date, discordPosts)
 }
 
 function GetLatestPost(rawHtml) {
@@ -356,13 +356,13 @@ function GetEmbedColur(department){
 return defaultEmbedColour;
 }
 
-function UpdateAndSendDbEmbeds(db, bot, date, discordPosts){
+function UpdateAndSendDbEmbeds(db, message, date, discordPosts){
   // Get collection of embeds from DB
   var dbSerebiiNews = GetSerebiiEmbeds(db, "serebiiMessages", date);
   if (typeof dbSerebiiNews === "undefined"){
     db.get('serebiiMessages').shift()
     .write();
-    sendSerbiiMessages(bot, discordPosts)
+    sendSerbiiMessages(message, discordPosts)
     db.get("serebiiMessages")
       .push({
         date: date,
@@ -376,7 +376,7 @@ function UpdateAndSendDbEmbeds(db, bot, date, discordPosts){
     message.channel.bulkDelete(dbSerebiiNews.ammountOfPosts)
     .then(messages => console.log(`Bulk deleted ${messages.size} messages`))
     .catch(console.error);
-    sendSerbiiMessages(bot, discordPosts)
+    sendSerbiiMessages(message, discordPosts)
     var discordPostsAssignment = {
       date: date,
       message: discordPosts,
@@ -396,10 +396,9 @@ function UpdateAndSendDbEmbeds(db, bot, date, discordPosts){
 //}
 }
 
-function sendSerbiiMessages(bot, discordPosts){
-  var channel = GetChannelByNameWithoutMessage ( bot, "○-serebii-news" )
+function sendSerbiiMessages(message, discordPosts){
   for (var i = 0; i < discordPosts.length; i++) {
     console.log("Sending Message: " + i);
-    channel.send(discordPosts[i]);
+    message.channel.send(discordPosts[i]);
   }
 }
