@@ -402,4 +402,5 @@ function sendSerbiiMessages(message, discordPosts){
   for (var i = 0; i < discordPosts.length; i++) {
     console.log("Sending Message: " + i);
     message.channel.send(discordPosts[i]);
+  }
 }
