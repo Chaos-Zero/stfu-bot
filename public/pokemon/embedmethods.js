@@ -198,7 +198,7 @@ function BalltismMessage(message, bot) {
     var balltismEntry = GetBalltismEntry(pokeIndex, regionIdentity);
 
     //pokemonCapList[pokeIndex - 1]
-    try {
+    //try {
       channel.send({embeds: [ 
         BalltismEmbed(
           message,
@@ -207,13 +207,13 @@ function BalltismMessage(message, bot) {
           pokeIndex,
           regionIdentity
         )], allowedMentions: { repliedUser: false } })
-    } catch {
-      var pinsirMessage =
-        "I'm sorry " +
-        username +
-        ", this pokemon has not had Balltism entries filled.";
-      message.channel.send(pinsirMessage);
-    }
+    //} catch {
+    //  var pinsirMessage =
+    //    "I'm sorry " +
+    //    username +
+    //    ", this pokemon has not had Balltism entries filled.";
+    //  message.channel.send(pinsirMessage);
+   // }
   }
 }
 
