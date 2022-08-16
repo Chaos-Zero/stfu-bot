@@ -379,12 +379,7 @@ function UpdateAndSendDbEmbeds(db, message, date, discordPosts){
       message: discordPosts,
       ammountOfPosts: discordPosts.length
     }
-    UpdateSerebiiEmbeds(db, "serebiiMessages", date, discordPostsAssignment){
-      db.get(table)
-         .find({ date: date })
-         .assign(assignment)
-         .write();
-   }
+    UpdateSerebiiEmbeds(db, "serebiiMessages", date, discordPostsAssignment);
   }
   // check if messages are equal
   //if (dbSerebiiNews.posts != discordPosts){
