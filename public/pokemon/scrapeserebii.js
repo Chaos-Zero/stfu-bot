@@ -34,7 +34,7 @@ function SendSerebiiNews(message, rawHtml) {
   //var postEntries = GetSplitPosts(latestpost);
   var postEntries = GetSplitPosts(testHtmlWithYoutube);
   var discordPosts = CreatePostEmbeds(postEntries);
-  CompareDbEmbeds(db, message, date, discordPosts)
+  UpdateAndSendDbEmbeds(db, message, date, discordPosts)
 }
 
 function GetLatestPost(rawHtml) {
@@ -354,12 +354,38 @@ function GetEmbedColur(department){
 return defaultEmbedColour;
 }
 
-function CompareDbEmbeds(db, message, date, discordPosts){
+function UpdateAndSendDbEmbeds(db, message, date, discordPosts){
   // Get collection of embeds from DB
-  var defaultVal = GetSerebiiEmbeds(db, "serebiiMessages", "01-01-2000");
-  console.log (defaultVal)
   var dbSerebiiNews = GetSerebiiEmbeds(db, "serebiiMessages", date);
-  console.log (dbSerebiiNews)
+  if (typeof dbSerebiiNews === "undefined"){
+    db.get('serebiiMessages').shift()
+    .write();
+    sendSerbiiMessages(message, discordPosts)
+    db.get("serebiiMessages")
+      .push({
+        date: date,
+        message: discordPosts,
+        ammountOfPosts: discordPosts.length
+      })
+      .write();
+  }
+  else if(dbSerebiiNews.posts != discordPosts){
+    message.channel.bulkDelete(dbSerebiiNews.ammountOfPosts)
+    .then(messages => console.log(`Bulk deleted ${messages.size} messages`))
+    .catch(console.error);
+    sendSerbiiMessages(message, discordPosts)
+    var discordPostsAssignment = {
+      date: date,
+      message: discordPosts,
+      ammountOfPosts: discordPosts.length
+    }
+    UpdateSerebiiEmbeds(db, "serebiiMessages", date, discordPostsAssignment){
+      db.get(table)
+         .find({ date: date })
+         .assign(assignment)
+         .write();
+   }
+  }
   // check if messages are equal
   //if (dbSerebiiNews.posts != discordPosts){
   //message.channel.bulkDelete(dbSerebiiNews.ammountOfPosts)
@@ -370,4 +396,10 @@ function CompareDbEmbeds(db, message, date, discordPosts){
   //  message.channel.send(discordPosts[i]);
   //}
 //}
+}
+
+function sendSerbiiMessages(message, discordPosts){
+  for (var i = 0; i < discordPosts.length; i++) {
+    console.log("Sending Message: " + i);
+    message.channel.send(discordPosts[i]);
 }
