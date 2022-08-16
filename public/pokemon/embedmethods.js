@@ -56,7 +56,7 @@ function PokemonNumberMessage(message, bot) {
           //  .setTitle(`${title1}`)
           //.setDescription("Blah blah")
           .setThumbnail("https://wiki.p-insurgence.com/images/0/09/722.png");
-        channel.send({embeds: [embed], allowedMentions: { repliedUser: false } })
+        message.channel.send({embeds: [embed], allowedMentions: { repliedUser: false } })
           
       } else {
         pokeIndex = pokemonList.indexOf(pokemon.toLowerCase()) + 1;
@@ -129,7 +129,7 @@ function PokemonNumberMessage(message, bot) {
           "https://www.serebii.net/" + pokemonAddress + "" + pokeIndex + ".png"
         );
     }
-    channel.send({embeds: [embed], allowedMentions: { repliedUser: false } })
+    message.channel.send({embeds: [embed], allowedMentions: { repliedUser: false } })
   }
 }
 
@@ -179,7 +179,7 @@ function BalltismMessage(message, bot) {
           //  .setTitle(`${title1}`)
           //.setDescription("Blah blah")
           .setThumbnail("https://wiki.p-insurgence.com/images/0/09/722.png");
-          channel.send({embeds: [embed], allowedMentions: { repliedUser: false } })
+          message.channel.send({embeds: [embed], allowedMentions: { repliedUser: false } })
       } else {
         pokeIndex = pokemonList.indexOf(pokemon.toLowerCase()) + 1;
       }
@@ -199,7 +199,7 @@ function BalltismMessage(message, bot) {
 
     //pokemonCapList[pokeIndex - 1]
     //try {
-      channel.send({embeds: [ 
+      message.channel.send({embeds: [ 
         BalltismEmbed(
           message,
           balltismEntry,
