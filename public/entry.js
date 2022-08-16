@@ -3,6 +3,7 @@ const {
   Client,
   RichEmbed,
   Intents,
+  ActivityType,
   GatewayIntentBits,
   Partials,
 } = require("discord.js");
@@ -89,8 +90,9 @@ function CreateBot() {
   bot.on("ready", async () => {
     //Set bot card information
     bot.user.setPresence({ activities: [{name: 'Dani\'s homies! Type "$pinsir help" for more info.', 
-      type: "LISTENING"
-      }] 
+      type: ActivityType.Listening
+      }],
+      status: 'Downloading ALL THE INTERNET'
     });
     console.log("This bot is active!");
 
