@@ -246,7 +246,7 @@ async function CheckForCommand(message, channel, bot) {
         break;
       case "testest":
         //console.log(GetSplitPosts(GetLatestPost(html)));
-        SendSerebiiNews(message, serebiiNewsHtml);
+        SendSerebiiNews(db, message, serebiiNewsHtml);
         break;
       //case "da":
       //await channel.send(DynamaxAdventure(db, message));

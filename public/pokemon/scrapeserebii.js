@@ -28,11 +28,11 @@ const testMix =
   }
   const defaultEmbedColour = "0xFFFFFF"
 
-function SendSerebiiNews(message, rawHtml) {
+function SendSerebiiNews(db, message, rawHtml) {
   var latestpost = GetLatestPost(rawHtml);
   var date = GetPostDate(latestpost);
   //var postEntries = GetSplitPosts(latestpost);
-  var postEntries = GetSplitPosts(testHtmlWithYoutube);
+  var postEntries = GetSplitPosts(testMix);
   var discordPosts = CreatePostEmbeds(postEntries);
   UpdateAndSendDbEmbeds(db, message, date, discordPosts)
 }
