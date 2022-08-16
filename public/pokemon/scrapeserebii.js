@@ -30,13 +30,11 @@ const testMix =
 
 function SendSerebiiNews(message, rawHtml) {
   var latestpost = GetLatestPost(rawHtml);
+  var date = GetPostDate(latestpost);
   //var postEntries = GetSplitPosts(latestpost);
   var postEntries = GetSplitPosts(testHtmlWithYoutube);
   var discordPosts = CreatePostEmbeds(postEntries);
-  for (var i = 0; i < discordPosts.length; i++) {
-    console.log("Sending Message: " + i);
-    message.channel.send(discordPosts[i]);
-  }
+  CompareDbEmbeds(db, message, date, discordPosts)
 }
 
 function GetLatestPost(rawHtml) {
@@ -354,4 +352,22 @@ function GetEmbedColur(department){
     }
 }
 return defaultEmbedColour;
+}
+
+function CompareDbEmbeds(db, message, date, discordPosts){
+  // Get collection of embeds from DB
+  var defaultVal = GetSerebiiEmbeds(db, "serebiiMessages", "01-01-2000");
+  console.log (defaultVal)
+  var dbSerebiiNews = GetSerebiiEmbeds(db, "serebiiMessages", date);
+  console.log (dbSerebiiNews)
+  // check if messages are equal
+  //if (dbSerebiiNews.posts != discordPosts){
+  //message.channel.bulkDelete(dbSerebiiNews.ammountOfPosts)
+  //.then(messages => console.log(`Bulk deleted ${messages.size} messages`))
+  //.catch(console.error);
+  //for (var i = 0; i < discordPosts.length; i++) {
+  //  console.log("Sending Message: " + i);
+  //  message.channel.send(discordPosts[i]);
+  //}
+//}
 }

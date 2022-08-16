@@ -9,7 +9,7 @@ eval(fs.readFileSync("./public/database/read.js") + "");
 eval(fs.readFileSync("./public/database/write.js") + "");
 eval(fs.readFileSync("./public/utils/discordutils.js") + "");
 
-function getDbTable(db, table) {
+function GetDbTable(db, table) {
   return db.get(table).value();
 }
 
@@ -95,7 +95,7 @@ async function GetGhUsers(db) {
   var tableName = "ghUsers";
   var dbUsers = [];
 
-  var table = getDbTable(db, tableName);
+  var table = GetDbTable(db, tableName);
   table.forEach(function(user) {
     dbUsers.push({
       username: user.username,

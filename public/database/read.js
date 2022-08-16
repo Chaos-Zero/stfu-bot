@@ -14,6 +14,13 @@ function GetDataForUser(db, tableName, username) {
     .value();
 }
 
-function getDbTable(db, table) {
+function GetDbTable(db, table) {
   return db.get(table).value();
+}
+
+function GetSerebiiEmbeds(db, table, date){
+  return db
+    .get(table)
+    .find({ date: date })
+    .value();
 }

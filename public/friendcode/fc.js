@@ -39,7 +39,7 @@ async function GetUserPlatforms(db) {
   var tableName = "platform";
   var dbUsers = [];
 
-  var table = getDbTable(db, tableName);
+  var table = GetDbTable(db, tableName);
   table.forEach(function(user) {
     dbUsers.push({
       id: user.userId,

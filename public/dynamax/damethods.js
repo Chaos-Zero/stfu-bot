@@ -31,7 +31,7 @@ async function DynamaxAdventure(db, message) {
   }
 }
 
-function getDbTable(db, table) {
+function GetDbTable(db, table) {
   return db.get(table).value();
 }
 
@@ -232,7 +232,7 @@ async function GetPokemonHost(db) {
   var tableName = "dynamax";
   var dbUsers = [];
 
-  var table = getDbTable(db, tableName);
+  var table = GetDbTable(db, tableName);
   table.forEach(function(user) {
     dbUsers.push({
       name: user.username,

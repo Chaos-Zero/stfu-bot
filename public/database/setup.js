@@ -19,6 +19,7 @@ function DbDefaultSetup(db) {
       ]
     },
     { pinMessages: [{ username: "test", message: "test", messageId: "test" }] },
+    { serebiiMessages: [{ date: "01-01-2000", posts: ["test"], ammountOfPosts: [1] }] },
     {
       platform: [
         {

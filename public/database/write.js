@@ -12,3 +12,9 @@ function UpdateUserId(db, table, id, assignment){
       .write();
 }
 
+function UpdateSerebiiEmbeds(db, table, date, assignment){
+   db.get(table)
+      .find({ date: date })
+      .assign(assignment)
+      .write();
+}
