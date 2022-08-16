@@ -34,7 +34,7 @@ function GetChannelByName(message, channelString) {
 }
 
 function GetChannelByNameWithoutMessage ( bot, channelString ){
-  var channel = bot.guild.channels.cache.find(
+  var channel = bot.channels.cache.find(
     ch => ch.name === channelString
   );
   return channel
