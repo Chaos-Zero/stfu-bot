@@ -358,7 +358,7 @@ return defaultEmbedColour;
 
 async function UpdateAndSendDbEmbeds(db, bot, date, discordPosts){
   // Get collection of embeds from DB
-  var channel = await GetChannelByNameWithoutMessage ( bot, "○-serebii-news" )
+  var channel = await GetChannelByNameWithoutMessage ( bot, "serebii-news" )
   var dbSerebiiNews = GetSerebiiEmbeds(db, "serebiiMessages", date);
   if (typeof dbSerebiiNews === "undefined"){
     db.get('serebiiMessages').shift()
@@ -398,7 +398,7 @@ async function UpdateAndSendDbEmbeds(db, bot, date, discordPosts){
 }
 
 function sendSerbiiMessages(bot, discordPosts){
-  var channel = GetChannelByNameWithoutMessage ( bot, "○-serebii-news" )
+  var channel = GetChannelByNameWithoutMessage ( bot, "serebii-news" )
   for (var i = discordPosts.length; i > 0; i--) {
     console.log("Sending Message: " + i);
     channel.send(discordPosts[i]);
