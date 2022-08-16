@@ -358,6 +358,7 @@ return defaultEmbedColour;
 
 function UpdateAndSendDbEmbeds(db, bot, date, discordPosts){
   // Get collection of embeds from DB
+  var channel = GetChannelByNameWithoutMessage ( bot, "○-serebii-news" )
   var dbSerebiiNews = GetSerebiiEmbeds(db, "serebiiMessages", date);
   if (typeof dbSerebiiNews === "undefined"){
     db.get('serebiiMessages').shift()
@@ -373,7 +374,7 @@ function UpdateAndSendDbEmbeds(db, bot, date, discordPosts){
   }
   //else if(dbSerebiiNews.message != discordPosts){
     else if (!util.isDeepStrictEqual(dbSerebiiNews.message, discordPosts)) {
-    message.channel.bulkDelete(dbSerebiiNews.ammountOfPosts)
+    channel.bulkDelete(dbSerebiiNews.ammountOfPosts)
     .then(messages => console.log(`Bulk deleted ${messages.size} messages`))
     .catch(console.error);
     sendSerbiiMessages(bot, discordPosts)

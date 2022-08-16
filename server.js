@@ -115,6 +115,7 @@ const listener = app.listen(process.env.PORT, () => {
 
 var minutes = 1, the_interval = minutes * 60 * 1000;
 setInterval(function() {
-  console.log("Getting Serebii news");
+  await FetchSerebii();
+  console.log("Got Serebii news");
   SendSerebiiNews(db, bot, serebiiNewsHtml);
 }, the_interval);
