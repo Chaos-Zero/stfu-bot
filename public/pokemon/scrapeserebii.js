@@ -1,5 +1,6 @@
 const { Client, RichEmbed } = require("discord.js");
 const Discord = require("discord.js");
+const util = require('util');
 
 const testHtmlWithAddtionalPictures =
   '<div class="pics"><a href="/playpokemon/2022/worldchampionships.shtml"><img src="/worlds2022motif.jpg" alt="Pokémon World Championships " width="300" loading="lazy" /></a></div> <div class="subcat" ><h3>In The Pokémon Department</h3> <p class="title">Pokémon World Championships - Exclusive Merchandise Reveal</p> <p>The Pokémon Company International has given us the global exclusive reveal of a pair of merchandise that can be exclusively purchased at the Pokémon Center Pop-up Store at the <a href="/playpokemon/2022/worldchampionships.shtml">Pokémon World Championships</a> next week from August 17th through 21st in the ExCeL in London, United Kingdom.<br /> This merchandise is the much coveted Coin, Damage Counters & VSTAR Marker Set, with two variations being available in the store. The Coin, Damage Counters & VSTAR Marker Set  - Main Look (London WC22) and the Coin, Damage Counters & VSTAR Marker Set  - City (London WC22) which offer a different case and different coins with a different look<br /> The opening time of Pokémon Center are as follows, with entry being through a virtual queue system at the venue<br /> Wednesday 17th August: 12 pm to 7 pm<br /> Thursday 18th – Saturday 20th August: 8 am to 8 pm<br /> Sunday 21st August: 8 am to 4 pm <table align="center" class="dextab"> <tr > <td class="fooevo">Coin, Damage Counters & VSTAR Marker Set  - Main Look<br />Case</td><td class="fooevo">Coin, Damage Counters & VSTAR Marker Set  - Main Look<br />Dice & Coin</td></tr> <tr> <td class="cen"><a href="/playpokemon/2022/coinsetmain.jpg" rel="lightbox[ranger3]"><img src="/playpokemon/2022/coinsetmainth.jpg" width="250" loading="lazy" /></a></td><td class="cen"><a href="/playpokemon/2022/coinsetmain2.jpg" rel="lightbox[ranger3]"><img src="/playpokemon/2022/coinsetmain2th.jpg" height="250" loading="lazy" /></a></td> </tr> <tr >  <td class="fooevo">Coin, Damage Counters & VSTAR Marker Set  - City<br />Case</td><td class="fooevo">Coin, Damage Counters & VSTAR Marker Set  - City<br />Dice & Coin</td></tr> <tr><td class="cen"><a href="/playpokemon/2022/coinsetcity.jpg" rel="lightbox[ranger3]"><img src="/playpokemon/2022/coinsetcityth.jpg" width="250" loading="lazy" /></a></td><td class="cen"><a href="/playpokemon/2022/coinsetcity2.jpg" rel="lightbox[ranger3]"><img src="/playpokemon/2022/coinsetcity2th.jpg" height="250" loading="lazy" /></a></td> </tr> </table> </p></div>';
@@ -31,8 +32,9 @@ const testMix =
 function SendSerebiiNews(db, message, rawHtml) {
   var latestpost = GetLatestPost(rawHtml);
   var date = GetPostDate(latestpost);
-  //var postEntries = GetSplitPosts(latestpost);
-  var postEntries = GetSplitPosts(testMix);
+  var postEntries = GetSplitPosts(latestpost);
+  // Test message
+  //var postEntries = GetSplitPosts(testMix);
   var discordPosts = CreatePostEmbeds(postEntries);
   UpdateAndSendDbEmbeds(db, message, date, discordPosts)
 }
@@ -369,7 +371,8 @@ function UpdateAndSendDbEmbeds(db, message, date, discordPosts){
       })
       .write();
   }
-  else if(dbSerebiiNews.posts != discordPosts){
+  //else if(dbSerebiiNews.message != discordPosts){
+    else if (!util.isDeepStrictEqual(dbSerebiiNews.message, discordPosts)) {
     message.channel.bulkDelete(dbSerebiiNews.ammountOfPosts)
     .then(messages => console.log(`Bulk deleted ${messages.size} messages`))
     .catch(console.error);
