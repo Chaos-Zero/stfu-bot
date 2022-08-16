@@ -16,7 +16,8 @@ SetAcEntries();
 SetErEntries();
 async function SendSerebiiAfterDownload(){
   await FetchSerebii();
-  SendSerebiiNews(db, bot, serebiiNewsHtml);
+  await new Promise(resolve => setTimeout(resolve, 5000));
+  SendSerebiiNews(GetDb(), bot, serebiiNewsHtml);
 };
 SendSerebiiAfterDownload();
 
