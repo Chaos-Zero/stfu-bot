@@ -12,10 +12,13 @@ const app = express();
 
 //Set up bot
 const bot = CreateBot();
-FetchSerebii();
-SendSerebiiNews(db, bot, serebiiNewsHtml);
 SetAcEntries();
 SetErEntries();
+async function SendSerebiiAfterDownload(){
+  await FetchSerebii();
+  SendSerebiiNews(db, bot, serebiiNewsHtml);
+};
+SendSerebiiAfterDownload();
 
 var count = 10;
 
@@ -116,7 +119,6 @@ const listener = app.listen(process.env.PORT, () => {
 
 var minutes = 30, the_interval = minutes * 60 * 1000;
 setInterval(function() {
-  FetchSerebii();
-  console.log("Got Serebii news");
-  SendSerebiiNews(db, bot, serebiiNewsHtml);
+  // Updating Serebii news
+  SendSerebiiAfterDownload()
 }, the_interval);
