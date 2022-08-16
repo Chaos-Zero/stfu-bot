@@ -89,8 +89,10 @@ function CreateBot() {
   bot.login(`${botKey}`).catch(console.error);
   bot.on("ready", async () => {
     //Set bot card information
-    bot.user.setPresence({ 
-      status: 'Downloading ALL THE INTERNET'
+    bot.user.setPresence({ activities: [{name: 'Dani\'s homies!.', 
+      type: ActivityType.Listening
+      }],
+      status: 'Type "$pinsir help" for more info.'
     });
     console.log("This bot is active!");
 
