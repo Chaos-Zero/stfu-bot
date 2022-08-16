@@ -29,7 +29,7 @@ const testMix =
   }
   const defaultEmbedColour = "0xFFFFFF"
 
-function SendSerebiiNews(db, bot, rawHtml) {
+async function SendSerebiiNews(db, bot, rawHtml) {
   var latestpost = GetLatestPost(rawHtml);
   var date = GetPostDate(latestpost);
   var postEntries = GetSplitPosts(latestpost);
@@ -356,9 +356,9 @@ function GetEmbedColur(department){
 return defaultEmbedColour;
 }
 
-function UpdateAndSendDbEmbeds(db, bot, date, discordPosts){
+async function UpdateAndSendDbEmbeds(db, bot, date, discordPosts){
   // Get collection of embeds from DB
-  var channel = GetChannelByNameWithoutMessage ( bot, "○-serebii-news" )
+  var channel = await GetChannelByNameWithoutMessage ( bot, "○-serebii-news" )
   var dbSerebiiNews = GetSerebiiEmbeds(db, "serebiiMessages", date);
   if (typeof dbSerebiiNews === "undefined"){
     db.get('serebiiMessages').shift()
